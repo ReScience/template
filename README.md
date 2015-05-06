@@ -5,9 +5,11 @@ This is the submission template repository for the
 
 ### How to build the PDF ?
 
-In a console, type::
+In a console, type:
 
+```
   pandoc --standalone                      \
          --template=rescience-template.tex \
          --latex-engine=pdflatex paper.md  \
          --output paper.pdf
+```
