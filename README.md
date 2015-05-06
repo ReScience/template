@@ -8,9 +8,5 @@ This is the submission template repository for the
 In a console, type:
 
 ```
-pandoc --standalone                      \
-       --template=rescience-template.tex \
-       --latex-engine=pdflatex           \
-       --output paper.pdf                \
-       paper.md
+pandoc --standalone --template=rescience-template.tex --latex-engine=pdflatex --output paper.pdf paper.md
 ```
