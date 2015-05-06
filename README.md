@@ -10,6 +10,7 @@ In a console, type:
 ```
 pandoc --standalone                      \
        --template=rescience-template.tex \
-       --latex-engine=pdflatex paper.md  \
-       --output paper.pdf
+       --latex-engine=pdflatex           \
+       --output paper.pdf                \
+       paper.md
 ```
