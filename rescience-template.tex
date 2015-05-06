@@ -1,0 +1,190 @@
+\documentclass[10pt,a4paper,onecolumn]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{marginnote}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{authblk,etoolbox}
+\usepackage{titlesec}
+\usepackage{calc}
+\usepackage{hyperref}
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={$author-meta$},
+            pdftitle={$title-meta$},
+            colorlinks=true,
+            citecolor=blue,
+            urlcolor=blue,
+            linkcolor=blue,
+            pdfborder={0 0 0}}
+\urlstyle{same}
+\usepackage{tcolorbox}
+\usepackage{ragged2e}
+
+
+\definecolor{red}{HTML}{CF232B}
+\newcommand{\ReScience}{Re{\bfseries \textcolor{red}{Science}}}
+
+\newtcolorbox{rebox}
+   {colback=blue!5!white, colframe=blue!40!white,
+     boxrule=0.5pt, arc=2pt, fonttitle=\sffamily\scshape\bfseries,
+     left=6pt, right=20pt, top=6pt, bottom=6pt}
+
+
+% --- Page layout -------------------------------------------------------------
+\usepackage[top=3.5cm, bottom=3cm, right=1.5cm, left=1.5cm,
+            headheight=2cm, reversemp, includemp, marginparwidth=4.5cm]{geometry}
+
+% --- Section/SubSection/SubSubSection ----------------------------------------
+\titleformat{\section}
+  {\normalfont\sffamily\Large\bfseries}
+  {}{0pt}{}
+\titleformat{\subsection}
+  {\normalfont\sffamily\large}
+  {}{0pt}{}
+\titleformat{\subsubsection}
+  {\normalfont\sffamily}
+  {}{0pt}{}
+\titleformat*{\paragraph}
+  {\sffamily\normalsize}
+
+
+% --- Header / Footer ---------------------------------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%\renewcommand{\headrulewidth}{0.50pt}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\hspace{-1cm}\includegraphics[width=4.0cm]{ReScience}}
+\fancyhead[C]{}
+\fancyhead[R]{}
+\renewcommand{\footrulewidth}{0.25pt}
+\fancyfoot[L]{\sffamily \ReScience~$$\vert$$  \href{http://github.com/rescience/rescience/wiki}{github.com/rescience}}
+\fancyfoot[C]{\sffamily \thepage}
+\fancyfoot[R]{\sffamily $publication.date$ $$\vert$$
+                        Volume $publication.volume$ $$\vert$$
+                        Issue $publication.issue$}
+\pagestyle{fancy}
+\makeatletter
+\let\ps@plain\ps@fancy
+\fancyheadoffset[L]{4.5cm}
+\fancyfootoffset[L]{4.5cm}
+
+% --- Title / Authors ---------------------------------------------------------
+% patch \maketitle so that it doesn't center
+\patchcmd{\@maketitle}{center}{flushleft}{}{}
+\patchcmd{\@maketitle}{center}{flushleft}{}{}
+% patch \maketitle so that the font size for the title is normal
+\patchcmd{\@maketitle}{\LARGE}{\LARGE\sffamily}{}{}
+% patch the patch by authblk so that the author block is flush left
+\def\maketitle{{%
+  \renewenvironment{tabular}[2][]
+    {\begin{flushleft}}
+    {\end{flushleft}}
+  \AB@maketitle}}
+\makeatletter
+\renewcommand\AB@affilsepx{ \protect\Affilfont}
+%\renewcommand\AB@affilnote[1]{{\bfseries #1}\hspace{2pt}}
+\renewcommand\AB@affilnote[1]{{\bfseries #1}\hspace{3pt}}
+\makeatother
+\renewcommand\Authfont{\sffamily\bfseries}
+\renewcommand\Affilfont{\sffamily\small\mdseries}
+\setlength{\affilsep}{1em}
+
+
+% --- Document ----------------------------------------------------------------
+$if(title)$
+\title{$title$}
+$endif$
+
+$if(author)$
+    \usepackage{authblk}
+    $if(address)$
+        $for(author)$
+            \author[$author.affiliation$]{$author.name$}
+        $endfor$
+        $for(address)$
+            \affil[$address.code$]{$address.address$}
+        $endfor$
+    $else$
+        $for(author)$
+            $if(author.name)$
+                \author{$author.name$}
+            $else$
+                \author{$author$}
+            $endif$
+        $endfor$
+    $endif$
+$endif$
+
+$if(contact)$
+\date{\vspace{-5mm}
+      \sffamily \small \href{mailto:$contact$}{$contact$}}
+$else$
+\date{}
+$endif$
+
+
+\begin{document}
+\maketitle
+
+\marginpar{
+  %\hrule
+  \sffamily\small
+  %\vspace{2mm}
+  {\bfseries Editor}\\
+  $editor$\\
+
+  {\bfseries Reviewers}\\
+  $for(reviewer)$
+      $reviewer$\\
+  $endfor$
+
+  {\bfseries Received}  $publication.received$\\
+  {\bfseries Accepted}  $publication.accepted$\\
+  {\bfseries Published} $publication.published$
+
+  \begin{flushleft}
+  {\bfseries Competing Interests:}\\
+  The authors have declared that no competing interests exist.
+  \end{flushleft}
+  %\vspace{1mm}
+
+  \includegraphics[width=4.5cm]{CC-BY-SA}\\
+  %\vspace{2mm}
+  %\hrule
+}
+
+\marginpar{
+  \hrule\sffamily\small
+  \vspace{2mm}
+  $publication.repository$
+}
+
+\begin{rebox}
+\sffamily {\bfseries A reference implementation of}
+\small
+\begin{itemize}
+  $for(reproduction)$
+  \item $reproduction$
+  $endfor$
+\end{itemize}\par
+\end{rebox}
+
+
+$body$
+
+$if(natbib)$
+$if(biblio-files)$
+$if(biblio-title)$
+$if(book-class)$
+\renewcommand\bibname{$biblio-title$}
+$else$
+\renewcommand\refname{$biblio-title$}
+$endif$
+$endif$
+\bibliography{$biblio-files$}
+$endif$
+$endif$
+$if(biblatex)$
+\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+$endif$
+\end{document}
