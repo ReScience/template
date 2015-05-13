@@ -1,5 +1,5 @@
 \documentclass[10pt,a4paper,onecolumn]{article}
-\usepackage[utf8]{inputenc}
+% \usepackage[utf8]{inputenc}
 \usepackage{marginnote}
 \usepackage{graphicx}
 \usepackage{xcolor}
@@ -19,7 +19,25 @@
 \urlstyle{same}
 \usepackage{tcolorbox}
 \usepackage{ragged2e}
+\usepackage{fontspec}
+\usepackage{fontawesome}
+\usepackage{caption}
 
+
+\usepackage{longtable,booktabs}
+
+
+\usepackage[
+  backend=biber,
+%  style=alphabetic,
+%  citestyle=numeric
+]{biblatex}
+\bibliography{$bibliography$}
+
+
+
+% --- Macros ------------------------------------------------------------------
+\renewcommand*{\bibfont}{\small \sffamily}
 
 \definecolor{red}{HTML}{CF232B}
 \newcommand{\ReScience}{Re{\bfseries \textcolor{red}{Science}}}
@@ -29,10 +47,22 @@
      boxrule=0.5pt, arc=2pt, fonttitle=\sffamily\scshape\bfseries,
      left=6pt, right=20pt, top=6pt, bottom=6pt}
 
+\newtcolorbox{repobox}
+   {colback=red, colframe=red!75!black,
+     boxrule=0.5pt, arc=2pt, left=6pt, right=6pt, top=3pt, bottom=3pt}
+
+% --- Style -------------------------------------------------------------------
+\renewcommand*{\bibfont}{\small \sffamily}
+\renewcommand{\captionfont}{\small\sffamily}
+\renewcommand{\captionlabelfont}{\bfseries}
+
+\makeatletter
+\renewcommand\@biblabel[1]{{\bf #1.}}
+\makeatother
 
 % --- Page layout -------------------------------------------------------------
 \usepackage[top=3.5cm, bottom=3cm, right=1.5cm, left=1.5cm,
-            headheight=2cm, reversemp, includemp, marginparwidth=4.5cm]{geometry}
+            headheight=2.2cm, reversemp, includemp, marginparwidth=4.5cm]{geometry}
 
 % --- Section/SubSection/SubSubSection ----------------------------------------
 \titleformat{\section}
@@ -55,9 +85,13 @@
 \renewcommand{\headrulewidth}{0pt}
 \fancyhead[L]{\hspace{-1cm}\includegraphics[width=4.0cm]{ReScience}}
 \fancyhead[C]{}
-\fancyhead[R]{}
+\fancyhead[R]{} 
 \renewcommand{\footrulewidth}{0.25pt}
-\fancyfoot[L]{\sffamily \ReScience~$$\vert$$  \href{http://github.com/rescience/rescience/wiki}{github.com/rescience}}
+
+\fancyfoot[L]{\hypersetup{urlcolor=red}
+              \sffamily \ReScience~$$\vert$$
+              \href{http://rescience.github.io}{rescience.github.io}
+              \hypersetup{urlcolor=blue}}
 \fancyfoot[C]{\sffamily \thepage}
 \fancyfoot[R]{\sffamily $publication.date$ $$\vert$$
                         Volume $publication.volume$ $$\vert$$
@@ -89,10 +123,13 @@
 \renewcommand\Affilfont{\sffamily\small\mdseries}
 \setlength{\affilsep}{1em}
 
+\LetLtxMacro{\OldIncludegraphics}{\includegraphics}
+\renewcommand{\includegraphics}[2][]{\OldIncludegraphics[width=12cm, #1]{#2}}
+
 
 % --- Document ----------------------------------------------------------------
 $if(title)$
-\title{$title$}
+\title{[Re] $title$}
 $endif$
 
 $if(author)$
@@ -140,51 +177,81 @@ $endif$
 
   {\bfseries Received}  $publication.received$\\
   {\bfseries Accepted}  $publication.accepted$\\
-  {\bfseries Published} $publication.published$
+  {\bfseries Published} $publication.published$\\
+
+  {\bfseries Licence}   CC-BY-SA
 
   \begin{flushleft}
   {\bfseries Competing Interests:}\\
   The authors have declared that no competing interests exist.
   \end{flushleft}
-  %\vspace{1mm}
 
-  \includegraphics[width=4.5cm]{CC-BY-SA}\\
-  %\vspace{2mm}
-  %\hrule
-}
+  \hrule
+  \vspace{3mm}
 
-\marginpar{
-  \hrule\sffamily\small
-  \vspace{2mm}
-  $publication.repository$
+  \hypersetup{urlcolor=white}
+  
+  $if(repository.article)$
+  \vspace{-1mm}
+  \begin{repobox}
+    \bfseries\normalsize
+      \href{$repository.article$}{\faGithubAlt~Article repository}
+  \end{repobox}
+  $endif$
+  $if(repository.code)$
+  \vspace{-1mm}
+  \begin{repobox}
+    \bfseries\normalsize
+      \href{$repository.code$}{\faGithubAlt~Code repository}
+  \end{repobox}
+  $endif$
+  $if(repository.data)$
+  \vspace{-1mm}
+  \begin{repobox}
+    \bfseries\normalsize
+      \href{$repository.data$}{\faGithubAlt~Data repository}
+  \end{repobox}
+  $endif$
+  $if(repository.notebook)$
+  \vspace{-1mm}
+  \begin{repobox}
+    \bfseries\normalsize
+      \href{$repository.notebook$}{\faGithubAlt~Jupyter notebook}
+  \end{repobox}
+  $endif$
+  \hypersetup{urlcolor=blue}
 }
 
 \begin{rebox}
 \sffamily {\bfseries A reference implementation of}
 \small
+\begin{flushleft}
 \begin{itemize}
   $for(reproduction)$
   \item $reproduction$
   $endfor$
 \end{itemize}\par
+\end{flushleft}
 \end{rebox}
 
 
 $body$
 
+{\sffamily \small
 $if(natbib)$
-$if(biblio-files)$
-$if(biblio-title)$
-$if(book-class)$
-\renewcommand\bibname{$biblio-title$}
-$else$
-\renewcommand\refname{$biblio-title$}
-$endif$
-$endif$
-\bibliography{$biblio-files$}
-$endif$
+  $if(biblio-files)$
+    $if(biblio-title)$
+      $if(book-class)$
+        \renewcommand\bibname{$biblio-title$}
+      $else$
+        \renewcommand\refname{$biblio-title$}
+      $endif$
+    $endif$
+    \bibliography{$biblio-files$}
+  $endif$
 $endif$
 $if(biblatex)$
-\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+  \printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
 $endif$
+}
 \end{document}
