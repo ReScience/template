@@ -33,9 +33,11 @@ repository:
   article:  "http://github.com/rescience/rescience/wiki"
   code:     "http://github.com/rescience/rescience/wiki"
   data:
-  notebook: "http://github.com/rescience/rescience/wiki"
+  notebook:
 reproduction:
-  - "*Interaction between cognitive and motor cortico-basal ganglia loops during decision making: a computational study*, M. Guthrie, A. Leblois, A. Garenne, and T. Boraud, Journal of Neurophysiology, 109, 2013."
+  - "*Interaction between cognitive and motor cortico-basal ganglia loops
+     during decision making: a computational study*, M. Guthrie, A. Leblois,
+     A. Garenne, and T. Boraud, Journal of Neurophysiology, 109, 2013."
 bibliography: paper.bib
 ---
 
@@ -45,15 +47,21 @@ We propose a reference implementation of [@guthrie:2013] that introduces an
 action selection mechanism in cortico-basal ganglia loops based on a
 competition between the positive feedback, direct pathway through the striatum
 and the negative feedback, hyperdirect pathway through the subthalamic nucleus.
+The reference implementation has been coded in python for ease of reading and
+cython for performances because the main result includes a batch of 250
+experiments over 120 trials that would be too slow for regular python.
+
 
 # Methods
 
-The reference implementation has been coded in python using DANA
-[@rougier:DANA] which is a python framework for distributed, asynchronous,
-numerical and adaptive computing. The model fits the DANA paradigm and makes
-the source code easily understandable. We provide below the formal description
-of the model according to the proposition of Nordlie et al. [@nordlie:2009]
-for reproducible descriptions of neuronal network models.
+We used the description of the model in the original article as well as the
+sources of the model (requested from author) that are made of hundred files and
+6,000 lines of Delphi for the main source. We've been unable to compile this
+original implementation but we're able to run the provided Windows executable.
+We found some factual errors in the original article that have been corrected
+in this implementation. We provide below the formal description of the model
+according to the proposition of Nordlie et al. [@nordlie:2009] for reproducible
+descriptions of neuronal network models.
 
 Table              Description
 ------------------ ------------------------------------------------------------------
@@ -69,7 +77,7 @@ Channel model      --
 Synapse model      Linear synapse
 Plasticity         Reinforcement learning rule
 Input              External current in cortical areas (motor, associative & cognitive)
-Measurements       Firing rate
+Recordings         Firing rate & performances
 ------------------ -------------------------------------------------------------------
 
 Table: Model description following [@nordlie:2009] prescription.
@@ -151,34 +159,80 @@ Table: Synapse
 
 
 Reinforcement learning
----------------------- --------------------------------------------------------------------
+---------------------- ---------------------------------------------------------------------
 Type                   Delta rule
-Delta                  $\Delta W_{A \rightarrow B} = \alpha \times PE \times U_{B}$
+Delta                  $\Delta W_{A \rightarrow B} = \alpha \times PE \times U_{B} \times S$
+                       $S = (W_{A \rightarrow B}-W_{min})(W_{max} - W_{A \rightarrow B})$
                        $PE = Reward - V_{i}$
-                       $\alpha = 0.01$ if $PE < 0$ (LTD), $\alpha = 0.02$ if $PE > 0$ (LTP)
----------------------- --------------------------------------------------------------------
+                       $\alpha = 0.02$ if $PE < 0$ (LTD), $\alpha = 0.04$ if $PE > 0$ (LTP)
+---------------------- ---------------------------------------------------------------------
 
 Table: Plasticity
+
+
+Site                          Type
+----------------------------- ----------------------------------------------------
+Cognitive cortex              Firing rate
+Motor cortex                  Firing rate
+Cortico-striatal projections  Weights
+----------------------------- ----------------------------------------------------
+
+Table: Recordings
+
+Type           Description
+-------------- --------------------------------------------------------------------
+Cortical input A trial is preceded by a settling period (500ms) and followed by a
+               reset period. At time $t=0$, two shapes are presented in cortical
+               cognitive area ($I_{ext}=7$ at $\{i_1,i_2\}$) at two different
+               locations in cortical motor area ($I_{ext}=7$ at $\{j_1,j_2\}$)
+               and the cortical associate area is updated accordingly ($I_{ext}=7$
+               at $\{i_1,i_2\}\times\{j_1,j_2\}$)
+-------------- --------------------------------------------------------------------
+
+Table: Input
+
+
+Resources   Version
+----------- ---------------------------------------------------------------------------
+OS          OSX 10.10 (yosemite)
+Language    Python 2.7.6 (brew installation)
+Libraries   Numpy 1.8.1 (pip installation)
+            Matplotlib 1.3.0 (pip installation)
+            Cython 0.22 (pip installation)
+----------- ---------------------------------------------------------------------------
+
+Table: Environment
+
 
 
 # Results
 
 We did not reproduce all analysis of the original article but concentrate our
 efforts on the main results which are illustrated on figures 4 & 5 in the
-original article [@guthrie:2013]. Figure 1 illustrates the decision dynamic
-while figure 3 shows model performances on the task.
+original article [@guthrie:2013].
+
+We first reproduce the activity in the cortical populations during a single
+trial, prior to learning. Noise has a great influence on the overall dynamic
+and it is not possible to exactly reproduce figure 4 in the original article
+without precise information on the underlying random generator
+(seed). Consequently, we can only report a qualitatively equivalent figure
+where the most critical feature is the bifurcation in cognitive and motor
+activities after stimulus onset. Since no learning has occured yet, it is also
+possible to have the motor decision to occur before the cognitive decision.
+Figure 1 shows an example of a decision dynamic with an oscillatory regime
+between time t=0 and time t=500ms that is characteristic of the model.
 
 ![**Activity in the cortical population during a single trial of action selection.**
-  This is the reproduction of figure 4 of the original article. The overall shape is
-  slightly different because of the noise that makes the cognitive and motor decision
-  to reach threshold at different times. The oscillations between time t=0 and time
-  t=500ms are characteristic of the model. All activities have been recorded before
-  any learning occurs in the model.](code/figure-1.pdf)
+  This is the reproduction of figure 4 of the original article.](code/figure-1.pdf)
 
-![**Activity in all populations during a single trial of action selection.**
-  This specific figure was not included in the original article but has been
-  proved to be very useful when debuggin the model. All activities have been
-  recorded before any learning occurs in the model.](code/figure-2.pdf)
+We also test learning capacity of the model by reproducing the same procedure
+as in the original article (250 experiments, 120 trials) but we used a modified
+and simpler learning rule (see Plasiticity table) since the original learning
+rule used a sigmodial transfer function but no actual details were given on how
+to enforce it.
+
+![**Learning time course over 120 trials, averaged over 250 simulations.**
+  The blue filled area indicates the variance of the mean performance.](code/figure-2.pdf)
 
 # Conclusion
 

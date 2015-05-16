@@ -26,7 +26,6 @@
 
 \usepackage{longtable,booktabs}
 
-
 \usepackage[
   backend=biber,
 %  style=alphabetic,
@@ -160,6 +159,10 @@ $else$
 $endif$
 
 
+\setlength\LTleft{0pt}
+\setlength\LTright{0pt}
+
+
 \begin{document}
 \maketitle
 
@@ -228,7 +231,7 @@ $endif$
 \begin{flushleft}
 \begin{itemize}
   $for(reproduction)$
-  \item $reproduction$
+  \item[→] $reproduction$
   $endfor$
 \end{itemize}\par
 \end{flushleft}
