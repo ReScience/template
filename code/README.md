@@ -29,9 +29,13 @@ Then you can run a single trial:
 $ python single-trial.py
 ```
 
-Or the learning versions:
+.. image:: ./figure-1.pdf
+
+
+Or the full version:
 
 ```bash
-$ python single-trial-learning.py
-$ python 250-trials-learning.py
+$ python 250-trials.py
 ```
+
+.. image:: ./figure-2.pdf
