@@ -136,6 +136,6 @@ history["THL"]["mot"] = THL.mot.history[:3000]
 history["THL"]["cog"] = THL.cog.history[:3000]
 
 if 1:
-    display_ctx(history, 3.0, "single-trial.pdf")
-if 0:
-    display_all(history, 3.0, "single-trial-all.pdf")
+    display_ctx(history, 3.0, "figure-1.pdf")
+if 1:
+    display_all(history, 3.0, "figure-1bis.pdf")

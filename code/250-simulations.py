@@ -168,7 +168,7 @@ def learn(time, cues_cog, cues_mot, debug=True):
 
 
 if 0:
-    R = np.load("250-trials.npy")
+    R = np.load("250-simulations.npy")
 
 else:
     R = np.zeros((250,120))
@@ -220,7 +220,7 @@ else:
 
         R[k] = P
         print "Experiment %d: %.3f" % (k+1,np.array(P).mean())
-    np.save("250-trials.npy", R)
+    np.save("250-simulations.npy", R)
 
 
 # Display
@@ -249,6 +249,6 @@ plt.xlabel("Trial number", fontsize=16)
 plt.ylabel("Performance", fontsize=16)
 plt.ylim(0,1.0)
 plt.xlim(1,120)
-plt.savefig("250-trials.pdf")
+plt.savefig("figure-2.pdf")
 plt.show()
 sys.exit()

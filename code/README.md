@@ -35,7 +35,7 @@ $ python single-trial.py
 Or the full version:
 
 ```bash
-$ python 250-trials.py
+$ python 250-simulations.py
 ```
 
 ![](./figure-2.png)
