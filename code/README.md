@@ -1,6 +1,6 @@
 ## Introduction
 
-This is an optimized implementation of the following model:
+This is a reference implementation of the following model:
 
   M. Guthrie, A Leblois, A. Garenne, T. Boraud, "Interaction between cognitive
   and motor cortico-basal ganglia loops during decision making: a computational
