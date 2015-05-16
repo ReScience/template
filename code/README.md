@@ -29,7 +29,7 @@ Then you can run a single trial:
 $ python single-trial.py
 ```
 
-![](./figure-1.pdf)
+![](./figure-1.png)
 
 
 Or the full version:
@@ -38,4 +38,4 @@ Or the full version:
 $ python 250-trials.py
 ```
 
-![](./figure-2.pdf)
+![](./figure-2.png)
