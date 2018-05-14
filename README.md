@@ -38,5 +38,5 @@ Python scripts.
 
 **Published** under a Creative Commons Attribution 4.0 International license  
 **Corresponding author**:
-Nicolas P. Rougier ([nicolas.rougier@inria.](mailto:nicolas.rougier@inria.))  
+Nicolas P. Rougier ([nicolas.rougier@inria.](mailto:nicolas.rougier@inria))  
 **Competing Interests**: The authors have declared that no competing interests exist  
