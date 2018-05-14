@@ -1,6 +1,6 @@
 \documentclass[a4paper,11pt]{article}
 \usepackage[
-  left=3cm, right=3cm, top=2.5cm, bottom=2.5cm,
+  left=3cm, right=3cm, top=2.5cm, bottom=2.0cm,
   footskip=1.5cm, headheight=22.2pt, headsep=1cm,
   includehead, includefoot, heightrounded]{geometry}
 \usepackage[utf8]{inputenc}
@@ -13,6 +13,13 @@
 \usepackage[tt=false]{libertine}
 \usepackage[varqu]{zi4}
 \usepackage[libertine]{newtxmath}
+
+%\usepackage[scaled=0.88]{beraserif}
+%\usepackage[scaled=0.85]{berasans}
+%\usepackage[scaled=0.84]{beramono}
+
+
+
 
 % Maths
 % \usepackage{amsmath, amssymb, amsthm, mathtools}
@@ -35,7 +42,7 @@
 
 % Figure caption
 \usepackage[labelsep=period]{caption}
-\renewcommand{\captionfont}{\small\sffamily}
+\renewcommand{\captionfont}{\small}
 \renewcommand{\captionlabelfont}{\small\sffamily\bfseries}
 
 
@@ -108,9 +115,9 @@
 \lhead{}
 \renewcommand{\footrulewidth}{0.0pt}
 \renewcommand{\headrulewidth}{0.0pt}
-\cfoot{\footnotesize \sf \thepage} 
-\lhead{\footnotesize \sf ReScience~$|$
-                        \href{https://rescience.github.io}{rescience.github.io}}
+
+%\lhead{\footnotesize \sf ReScience~$|$
+%                        \href{https://rescience.github.io}{rescience.github.io}}
 
 % First page
 \fancypagestyle{titlepage} {
@@ -118,12 +125,11 @@
   \chead{
    \sf \LARGE \ReScience\vspace{-5mm}\\
    \noindent\rule{9cm}{0.4pt}\\
-   \noindent\vspace{-3mm}\footnotesize Reproducible Science is Good,
-                                       Replicated Science is Better.
+   \normalsize \noindent \vspace{-3mm} \articleHEAD
   }
   \renewcommand{\headrulewidth}{0.0pt}
   \renewcommand{\footrulewidth}{0.0pt}
-  \cfoot{\vfill \small \sf \href{https://rescience.github.io}{rescience.github.io}\\
+  \cfoot{\vfill \small \sf ReScience\\ %\href{https://rescience.github.io}{rescience.github.io}\\
                 \tiny {\lsstyle \scshape \hspace{0.75pt} An Open Access Journal}
   }
 }
@@ -137,16 +143,39 @@
 % =============================================================================
 \input{article-metadata.tex}
 % =============================================================================
+
+
+%\lfoot{\footnotesize \sf DOI:~\doi{\articleDOI}}
+%\rhead{\footnotesize \sf \articleHEAD}
+%\rfoot{\footnotesize \sf Volume \articleVOLUME~$|$~Article \#\articleNUMBER}
+\lfoot{\footnotesize \sf ReScience \articleVOLUME:\articleNUMBER}
+\rfoot{\footnotesize \sf \thepage}
+%\rfoot{\\footnotesize \sf Volume \articleVOLUME~$|$~Article \#\articleNUMBER}
+\rhead{\footnotesize \sf \articleHEAD}
+%\rfoot{\footnotesize \sf Volume \articleVOLUME~$|$~Article \#\articleNUMBER}
+
+
+
+\title{\Large \sf \bfseries \articleTITLE}
+
+
 \begin{document}
 \maketitle
 \thispagestyle{titlepage}
-\noindent {\bfseries \sffamily Abstract}. \articleABSTRACT\\
+\noindent {\bfseries Abstract}. \articleABSTRACT\\
 
-\noindent {\bfseries \sffamily Keywords:} \articleTAGS
+\noindent {\bfseries Keywords:} \articleTAGS\\
+
+\noindent {\bfseries A replication of } \fullcite{\replicationBIB}.
 
 % =============================================================================
 \input{article-header.tex}
 %=============================================================================
+
+\newgeometry{
+  left=3cm, right=3cm, top=1.0cm, bottom=1.5cm,
+  footskip=1.5cm, headsep=1cm, includehead, includefoot, heightrounded}
+
 
 %=============================================================================
 \input{article-content.tex}
