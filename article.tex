@@ -1,0 +1,164 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[
+  left=3cm, right=3cm, top=2.5cm, bottom=2.5cm,
+  footskip=1.5cm, headheight=22.2pt, headsep=1cm,
+  includehead, includefoot, heightrounded]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[american]{babel}
+
+% Creative commons icons
+\usepackage{ccicons}
+
+% Fonts
+\usepackage[tt=false]{libertine}
+\usepackage[varqu]{zi4}
+\usepackage[libertine]{newtxmath}
+
+% Maths
+% \usepackage{amsmath, amssymb, amsthm, mathtools}
+
+% Graphics
+\usepackage{graphicx}
+
+% First page, bottom header
+\usepackage[letterspace=150]{microtype}
+
+% For the ifempty macro
+\usepackage{etoolbox}
+
+% For two columns bibliography
+\usepackage{multicol}
+
+% Sans-serif section titles
+\usepackage{sectsty}
+\allsectionsfont{\sffamily}
+
+% Figure caption
+\usepackage[labelsep=period]{caption}
+\renewcommand{\captionfont}{\small\sffamily}
+\renewcommand{\captionlabelfont}{\small\sffamily\bfseries}
+
+
+% Biber
+\usepackage[
+  backend=biber,
+  style = numeric,
+  % style=authoryear,
+  sorting = none,
+  giveninits = true,
+  maxcitenames=3,
+  mincitenames=1,
+  maxbibnames=1000,
+  isbn = false,
+  url = false,
+  doi = false,
+  autocite = superscript,
+  natbib = true]{biblatex}
+\DeclareFieldFormat{labelnumberwidth}{#1\adddot}
+
+
+% Hyperref & colors
+\usepackage{xcolor}
+\definecolor{blendedblue}{rgb}{0.2, 0.2, 0.6}
+\definecolor{blendedred}{rgb}{0.8, 0.2, 0.2}
+\usepackage[pdfusetitle,
+            bookmarks=true,
+            breaklinks=true,
+            pdfborder={0 0 0},
+            citecolor=blendedblue,
+            colorlinks=true,
+            linkcolor=blendedblue,
+            urlcolor=blendedblue,
+            citecolor=blendedblue,
+            linktocpage=false,
+            hyperindex=true,
+            linkbordercolor=white]{hyperref}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true}
+
+% Author and affiliations
+\usepackage{authblk}
+\renewcommand\Affilfont{\normalfont\sf\footnotesize}
+\renewcommand\Authfont{\sf\bfseries\small}
+
+% Various convenient macros
+\usepackage[many]{tcolorbox}
+\newtcbox{\iconbox}[1][]{%
+  enhanced,nobeforeafter,tcbox raise base, 
+  boxrule=0.4pt, top=0pt, bottom=-1pt,
+  right=1pt, left=1pt, arc=1pt, boxsep=1pt,
+  fontupper={\tiny \sffamily}, before upper={\vphantom{dlg}},
+  colframe=white, colback=black!10!white, coltext=black}
+\newcommand{\orcid}[1]{\href{https://orcid.org/#1}{\iconbox{ID}}}
+\newcommand{\doi}[1]{\href{http://doi.org/#1}{#1}}
+\newcommand{\github}[1]{\href{https://github.com/#1}{github.com/#1}}
+\definecolor{red}{HTML}{CF232B}
+\newcommand{\ReScience}{{\bfseries \textcolor{red}{ReScience}}}
+
+
+% Line numbers (discrete color)
+% \usepackage{lineno}
+% \renewcommand{\linenumberfont}{\sf\footnotesize\color{lightgray}}
+
+
+% Headers & footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{}
+\renewcommand{\footrulewidth}{0.0pt}
+\renewcommand{\headrulewidth}{0.0pt}
+\cfoot{\footnotesize \sf \thepage} 
+\lhead{\footnotesize \sf ReScience~$|$
+                        \href{https://rescience.github.io}{rescience.github.io}}
+
+% First page
+\fancypagestyle{titlepage} {
+  \fancyhf{}
+  \chead{
+   \sf \LARGE \ReScience\vspace{-5mm}\\
+   \noindent\rule{9cm}{0.4pt}\\
+   \noindent\vspace{-3mm}\footnotesize Reproducible Science is Good,
+                                       Replicated Science is Better.
+  }
+  \renewcommand{\headrulewidth}{0.0pt}
+  \renewcommand{\footrulewidth}{0.0pt}
+  \cfoot{\vfill \small \sf \href{https://rescience.github.io}{rescience.github.io}\\
+                \tiny {\lsstyle \scshape \hspace{0.75pt} An Open Access Journal}
+  }
+}
+
+% No date
+\date{}
+
+
+
+
+% =============================================================================
+\input{article-metadata.tex}
+% =============================================================================
+\begin{document}
+\maketitle
+\thispagestyle{titlepage}
+\noindent {\bfseries \sffamily Abstract}. \articleABSTRACT\\
+
+\noindent {\bfseries \sffamily Keywords:} \articleTAGS
+
+% =============================================================================
+\input{article-header.tex}
+%=============================================================================
+
+%=============================================================================
+\input{article-content.tex}
+%=============================================================================
+
+
+\renewcommand*{\bibfont}{\footnotesize \sffamily}
+\begingroup\setlength{\multicolsep}{0pt}
+\begin{multicols}{2}[\printbibheading]
+\printbibliography[heading=none]
+\end{multicols}\endgroup
+% \printbibliography[title=References]
+
+\end{document}
+

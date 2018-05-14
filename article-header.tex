@@ -1,0 +1,43 @@
+\begin{tikzpicture}[remember picture, overlay]
+  \node [shift={(+1.5cm,-4cm)}] at (current page.north west) {
+     \begin{tikzpicture}[remember picture, overlay]
+       \fill [fill=red, opacity=1.0] (0,0) rectangle (2.cm,4cm);
+       \node [shift={(1cm,1cm)}, opacity=1.0]
+             {\includegraphics[width=1.5cm]{logo.pdf}};
+     \end{tikzpicture}
+  };
+\end{tikzpicture}
+
+
+\vfill
+\noindent\makebox[\textwidth]{\rule{\textwidth}{0.4pt}}
+{\footnotesize \sf
+  \noindent \textbf{Cite as}: \articleTITLE, \articleAUTHORS,
+                              ReScience \articleVOLUME(\articleNUMBER), \articleYEAR.
+                              \textbf{DOI} \doi{\articleDOI}.\par
+~\\
+\noindent \textbf{Code repository} at \href{https://\codeURL}{\codeURL} --
+          \textbf{DOI}                \doi{\codeDOI}\\
+\ifdefempty{\dataURL}{}{
+\noindent \textbf{Data repository} at \href{https://\dataURL}{\dataURL} --
+          \textbf{DOI}                \doi{\dataDOI}\\
+}
+~\\
+\noindent \textbf{Edited by}   \editorNAME$^{\orcid{\editorORCID}}$ --
+          \textbf{Reviewed by} \reviewerINAME$^{\orcid{\reviewerIORCID}}$ 
+           \&                  \reviewerIINAME$^{\orcid{\reviewerIIORCID}}$ --
+                               \href{\reviewURL}{Open Review}\par
+\noindent \textbf{Received}  \dateRECEIVED~--
+          \textbf{Accepted}  \dateACCEPTED~--
+          \textbf{Published} \datePUBLISHED\par
+\noindent \textbf{Copyright} ©~\articleYEAR~\articleAUTHORS\par
+\noindent \textbf{Published} under a Creative Commons Attribution 4.0 International
+          (\href{https://creativecommons.org/licenses/by/4.0/}{\ccLogo\ccAttribution})
+          license\par
+~\\
+\noindent \textbf{Corresponding author}:
+\contactNAME~(\href{mailto:\contactEMAIL}{\contactNAME})\\
+\noindent \textbf{Competing Interests}:
+           The authors have declared that no competing interests exist\par
+}
+\clearpage
