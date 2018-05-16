@@ -6,6 +6,9 @@
 \usepackage[utf8]{inputenc}
 \usepackage[american]{babel}
 
+%
+\usepackage{csquotes}
+
 % Creative commons icons
 \usepackage{ccicons}
 
@@ -125,7 +128,7 @@
   \chead{
    \sf \LARGE \ReScience\vspace{-5mm}\\
    \noindent\rule{9cm}{0.4pt}\\
-   \normalsize \noindent \vspace{-3mm} \articleHEAD
+   \normalsize \noindent \vspace{-3mm} \authorsSHORT~\articleYEAR
   }
   \renewcommand{\headrulewidth}{0.0pt}
   \renewcommand{\footrulewidth}{0.0pt}
@@ -148,10 +151,10 @@
 %\lfoot{\footnotesize \sf DOI:~\doi{\articleDOI}}
 %\rhead{\footnotesize \sf \articleHEAD}
 %\rfoot{\footnotesize \sf Volume \articleVOLUME~$|$~Article \#\articleNUMBER}
-\lfoot{\footnotesize \sf ReScience \articleVOLUME:\articleNUMBER}
+\lfoot{\footnotesize \sf ReScience \journalVOLUME:\articleNUMBER}
 \rfoot{\footnotesize \sf \thepage}
 %\rfoot{\\footnotesize \sf Volume \articleVOLUME~$|$~Article \#\articleNUMBER}
-\rhead{\footnotesize \sf \articleHEAD}
+\rhead{\footnotesize \sf \authorsSHORT~\articleYEAR}
 %\rfoot{\footnotesize \sf Volume \articleVOLUME~$|$~Article \#\articleNUMBER}
 
 
@@ -164,16 +167,17 @@
 \thispagestyle{titlepage}
 \noindent {\bfseries Abstract}. \articleABSTRACT\\
 
-\noindent {\bfseries Keywords:} \articleTAGS\\
+\noindent {\bfseries Keywords:} \articleKEYWORDS\\
 
-\noindent {\bfseries A replication of } \fullcite{\replicationBIB}.
+\noindent {\bfseries A replication of }
+          \href{http://doi.org/\replicationDOI}{\replicationBIB}\\
 
 % =============================================================================
 \input{article-header.tex}
 %=============================================================================
 
 \newgeometry{
-  left=3cm, right=3cm, top=1.0cm, bottom=1.5cm,
+  left=3cm, right=4cm, top=1.0cm, bottom=1.5cm,
   footskip=1.5cm, headsep=1cm, includehead, includefoot, heightrounded}
 
 
