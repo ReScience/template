@@ -210,20 +210,20 @@ class Article:
 
         # Replication
         replication = {key:value for replication in document["replication"]
-                            for key, value in replication.items()}
+                                 for key, value in replication.items()}
         self.replication = Replication(replication["bib"], replication["doi"])
 
         # Article number & DOI
         article = {key:value for article in document["article"]
-                              for key, value in article.items()}
-        self.article_number = article["number"]
+                             for key, value in article.items()}
+        self.article_number = str(article["number"])
         self.article_doi = article["doi"]
 
         # Journal volume and issue
         journal = {key:value for journal in document["journal"]
                              for key, value in journal.items()}
-        self.journal_volume = journal["volume"]
-        self.journal_issue = journal["issue"]
+        self.journal_volume = str(journal["volume"])
+        self.journal_issue = str(journal["issue"])
         
                     
     def add_contributor(self, contributor):
@@ -243,7 +243,6 @@ if __name__ == '__main__':
 
     with open("metadata.yaml") as file:
         article = Article(file.read())
-
         print(article.authors_full)
         print(article.authors_abbrv)
         print(article.authors_short)

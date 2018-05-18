@@ -1,7 +1,6 @@
 # ReScience yaml to latex converter
 # Released under the BSD two-clauses licence
 
-
 def generate_latex_metadata(article):
 
     content = (

@@ -90,7 +90,8 @@ dates:
 
 article:
   - number:     1
-  - doi:        10.5281/zenodo.27944
+  - doi:        10.5072/zenodo.217655
+  - id:         
 
 journal:
   - volume:     1
