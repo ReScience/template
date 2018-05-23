@@ -1,18 +1,13 @@
 # To be filled by the author(s) at the time of submission
 # -------------------------------------------------------
 
-title: "[Re] Interaction between cognitive and motor cortico-basal
-             ganglia loops during decision making: a computational study"
+title: "ReScience Article Template"
 
 authors:
-  - name: Meropi Topalidou
-    orcid: 0000-0003-3695-4941
-    email: Meropi.Topalidou@inria.fr
-    affiliations: 1,2,3,$\dagger$
   - name: Nicolas P. Rougier
     orcid: 0000-0002-6972-589X
     email: Nicolas.Rougier@inria.fr
-    affiliations: 1,2,3,$\dagger$,*      # * is for contact author
+    affiliations: 1,2,3,*      # * is for contact author
 
 affiliations:
   - code:    1
@@ -26,20 +21,19 @@ affiliations:
     name:    Institut des Maladies Neurodégénératives, Université  de Bordeaux,
              Centre National de la Recherche Scientifique, UMR 5293
     address: Bordeaux, France
-  - code:    $\dagger$
-    name:    These autors contributed equally to this work
 
 keywords:
-  - python
-  - computational neuroscience
+  - Latex
+  - Template
+  - ReScience
 
 code:
-  - url: github.com/rougier/model-code
+  - url: https://github.com/ReScience/ReScience-template
   - doi: 10.5281/zenodo.27944
 
 data:
-  - url: github.com/rougier/model-data
-  - doi: 10.5281/zenodo.27944.
+  - url:
+  - doi:
 
 replication:
  - bib: "M. Guthrie, A. Leblois, A. Garenne, and T. Boraud.
@@ -48,33 +42,29 @@ replication:
          In: Journal of Neurophysiology 109.12 (2013)"
  - doi: 10.1152/jn.00026.2013
 
-abstract: "We propose a reference implementation of “Interaction between
-  cognitive and motor cortico-basal ganglia loops during decision making: a
-  computational study”, M. Guthrie, A. Leblois, A. Garenne, and T. Boraud,
-  Journal of Neurophysiology, 109(12), 2013 that introduces an action selection
-  mechanism in cortico-basal ganglia loops based on a competition between the
-  positive feed- back, direct pathway through the striatum and the negative
-  feedback, hyperdirect pathway through the subthalamic nucleus. The original
-  implementation was made in Delphi (Object Pascal) whose sources are available
-  on request to any of the author of the original article. We have used these
-  sources to disambiguate ambiguous and missing information in the original
-  article. The reference implementation we propose has been coded in Python for
-  ease of reading and Cython for performances because the main result includes
-  a batch of 250 experiments over 120 trials that would be too slow for regular
-  Python scripts."
+abstract: "This article is a proposition for a new article template for the
+  ReScience C (computational replication) and ReScience X (experimental
+  replication) journals. It is loosely based after Edward Tufte’s book style
+  where the large left columns containes the main text and the right columns is
+  used for auxiliary informations such as notes, captions or references. The
+  template requires a standard TeXLive installation in order to compile it and
+  this PDF has been compiled using TeXLive 2017 (pdflatex). Both the style, the
+  layout and the colors of the template aim at giving ReScience a strong but
+  subtle identity."
 
+type: Editorial
 
 
 # To be filled by the author(s) after acceptance
 # ----------------------------------------------
 
 review: 
-  - url: https://github.com/ReScience/ReScience-submission/pull/3
-  - doi: ""
+  - url: 
+  - doi: 
 
 contributors:
   - name: Tiziano Zito
-    orcid: ""
+    orcid: 
     role: editor
   - name: Benoît Girard
     orcid: 0000-0002-8117-7064
@@ -90,8 +80,7 @@ dates:
 
 article:
   - number:     1
-  - doi:        10.5072/zenodo.217655
-  - id:         
+  - doi:        
 
 journal:
   - volume:     1
