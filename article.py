@@ -191,7 +191,9 @@ class Article:
         if "code" in document.keys():
             code = {key:value for data in document["code"]
                               for key, value in data.items()}
-            self.code = Repository("code", code["url"], code["doi"])
+            self.code = Repository("code",
+                                   code.get("url","") or "",
+                                   code.get("doi","") or "")
         else:
             raise IndexError("Code repository not found")
         
@@ -199,7 +201,9 @@ class Article:
         if "data" in document.keys():
             data = {key:value for data in document["data"]
                               for key, value in data.items()}
-            self.data = Repository("data", data["url"], data["doi"])
+            self.data = Repository("data",
+                                   data.get("url","") or "",
+                                   data.get("doi","") or "")
         else:
             self.data = Repository("data", "", "")
             
@@ -217,7 +221,7 @@ class Article:
         article = {key:value for article in document["article"]
                              for key, value in article.items()}
         self.article_number = str(article["number"])
-        self.article_doi = article["doi"]
+        self.article_doi = article.get("doi","") or ""
 
         # Journal volume and issue
         journal = {key:value for journal in document["journal"]
