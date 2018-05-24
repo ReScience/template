@@ -84,31 +84,31 @@ class Date:
 
 class Article:
     def __init__(self, data):
-        self.title = None
-        self.absract = None
+        self.title = ""
+        self.absract = ""
         self.keywords = []
         self.authors = []
         self.editors = []
         self.reviewers = []
         self.affiliations = []
-        self.code = None
-        self.data = None
-        self.number = None
-        self.contact = None
+        self.code = ""
+        self.data = ""
+        self.number = ""
+        self.contact = ""
 
-        self.review = None
-        self.replication = None
+        self.review = ""
+        self.replication = ""
         
-        self.date_received = None
-        self.date_accepted = None
-        self.date_published = None
+        self.date_received = ""
+        self.date_accepted = ""
+        self.date_published = ""
 
         self.journal_name = "ReScience"
         self.journal_issn = "2430-3658"
-        self.journal_volume = None
-        self.journal_issue = None
-        self.article_number = None
-        self.article_doi = None
+        self.journal_volume = ""
+        self.journal_issue = ""
+        self.article_number = ""
+        self.article_doi = ""
 
         self.parse(data)
 
@@ -157,8 +157,8 @@ class Article:
         for item in document["authors"]:
             role = "author"
             name = item["name"]
-            orcid = item.get("orcid","")
-            email = item.get("email","")
+            orcid = item.get("orcid","") or ""
+            email = item.get("email","") or ""
             affiliations = item["affiliations"].split(",")
             if "*" in affiliations:
                 affiliations.remove("*")
@@ -182,7 +182,7 @@ class Article:
         for item in document["contributors"]:
             role = item["role"]
             name = item["name"]
-            orcid = item.get("orcid","")
+            orcid = item.get("orcid","") or ""
             contributor = Contributor(role, name, orcid)
             self.add_contributor(contributor)
 
