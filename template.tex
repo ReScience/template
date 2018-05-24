@@ -267,20 +267,20 @@
 
 
 \begin{document}
-\vspace{.5em}
+~\\
 {\sf \large \textcolor{gray}{Editorial}}
-\marginpar{
-\vspace{4em}
-\begin{tcolorbox}[% width=\textwidth, % height=3cm,
-                  arc=1pt, boxsep=0pt, boxrule=1pt,
-                  colframe=darkred!25!white,
-                  colback=darkred!10!white,
-                  coltext=black]
-  {\sf \small
-      {\bfseries Author version}\\
-      {\footnotesize Submitted on \today}}
-\end{tcolorbox}
-}
+%%\marginpar{
+%%\vspace{4em}
+%% \begin{tcolorbox}[% width=\textwidth, % height=3cm,
+%%                   arc=1pt, boxsep=0pt, boxrule=1pt,
+%%                   colframe=darkred!25!white,
+%%                   colback=darkred!10!white,
+%%                   coltext=black]
+%%   {\sf \small
+%%       {\bfseries Author version}\\
+%%       {\footnotesize Submitted on \today}}
+%% \end{tcolorbox}
+%% }
 
 {\let\newpage\relax\maketitle}
 \maketitle
@@ -297,9 +297,9 @@ strong but subtle identity.\\
 
 {\sf \bfseries Keywords} Latex, Template, ReScience\\
 
-\renewcommand{\baselinestretch}{0.5}\normalsize
-\tableofcontents
-\renewcommand{\baselinestretch}{1.0}\normalsize
+%\renewcommand{\baselinestretch}{0.5}\normalsize
+%\tableofcontents
+%\renewcommand{\baselinestretch}{1.0}\normalsize
 
 %% \vspace{5mm}
 %% {\small \sf {\bfseries Contact}: 
@@ -310,8 +310,10 @@ strong but subtle identity.\\
 
 \begin{minipage}{\headwidth}
 \vfill
-\noindent\makebox[\textwidth]{\rule{\textwidth}{0.5pt}}
-{\footnotesize \sf
+%\noindent\makebox[\textwidth]{\rule{\textwidth}{0.5pt}}
+\begin{framed}
+%  {
+    \footnotesize \sf
   \noindent \textbf{Cite as} \articleTITLE, \authorsABBRV.
                              In: {\em ReScience C}
                              \journalVOLUME(\#\articleNUMBER), \articleYEAR.
@@ -340,7 +342,8 @@ strong but subtle identity.\\
 \contactNAME~(\href{mailto:\contactEMAIL}{\contactEMAIL})\\
 \noindent \textbf{Competing Interests}:
            The authors have declared that no competing interests exist\par
-}
+\end{framed}
+%}
 
   
 %\input{article-header.tex}
