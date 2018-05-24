@@ -22,7 +22,7 @@
 \usepackage[a4paper]{geometry}
 \geometry{left=1.5cm, right=1.5cm, height=28cm}
 \geometry{footskip=1.25cm, headheight=1cm, headsep=1.25cm}
-\geometry{marginparsep=0.5cm, marginpar=5cm}
+\geometry{marginparsep=0.5cm, marginpar=5.5cm}
 \geometry{includehead, includefoot, includemp}
 
 
@@ -253,195 +253,16 @@
 }
 
 
+
 % =============================================================================
 \bibliography{article.bib}
 
-%\begin{document}
-%\input{article-cover.tex}
-%\input{article-content.tex}
-%\addcontentsline{toc}{section}{References}
-%\renewcommand*{\bibfont}{\footnotesize \sffamily}
-%\printbibliography
-%\end{document}
-% =============================================================================
-
-
 \begin{document}
-~\\
-{\sf \large \textcolor{gray}{Editorial}}
-%%\marginpar{
-%%\vspace{4em}
-%% \begin{tcolorbox}[% width=\textwidth, % height=3cm,
-%%                   arc=1pt, boxsep=0pt, boxrule=1pt,
-%%                   colframe=darkred!25!white,
-%%                   colback=darkred!10!white,
-%%                   coltext=black]
-%%   {\sf \small
-%%       {\bfseries Author version}\\
-%%       {\footnotesize Submitted on \today}}
-%% \end{tcolorbox}
-%% }
-
-{\let\newpage\relax\maketitle}
-\maketitle
-
-{\sf \bfseries Abstract} This article is a proposition for a new
-article template for the ReScience C (computational replication) and ReScience
-X (experimental replication) journals. It is loosely based after Edward Tufte's
-book style where the large left columns containes the main text and the right
-columns is used for auxiliary informations such as notes, captions or
-references. The template requires a standard TeXLive installation in order to
-compile it and this PDF has been compiled using TeXLive 2017 (pdflatex). Both
-the style, the layout and the colors of the template aim at giving ReScience a
-strong but subtle identity.\\
-
-{\sf \bfseries Keywords} Latex, Template, ReScience\\
-
-%\renewcommand{\baselinestretch}{0.5}\normalsize
-%\tableofcontents
-%\renewcommand{\baselinestretch}{1.0}\normalsize
-
-%% \vspace{5mm}
-%% {\small \sf {\bfseries Contact}: 
-%% Nicolas P. Rougier (\href{mailto:nicolas.rougier@inria.fr}{nicolas.rougier@inria.fr})}
-
-\vfill
-
-
-\begin{minipage}{\headwidth}
-\vfill
-%\noindent\makebox[\textwidth]{\rule{\textwidth}{0.5pt}}
-\begin{framed}
-%  {
-    \footnotesize \sf
-  \noindent \textbf{Cite as} \articleTITLE, \authorsABBRV.
-                             In: {\em ReScience C}
-                             \journalVOLUME(\#\articleNUMBER), \articleYEAR.
-                             \textbf{DOI} \doi{\articleDOI}.\par
-~\\
-\noindent \textbf{Code repository} at \href{https://\codeURL}{\codeURL} --
-          \textbf{DOI}                \doi{\codeDOI}\\
-\ifdefempty{\dataURL}{}{
-\noindent \textbf{Data repository} at \href{https://\dataURL}{\dataURL} --
-          \textbf{DOI}                \doi{\dataDOI}\\
-}
-~\\
-\noindent \textbf{Edited by}   \editorNAME$^{\orcid{\editorORCID}}$ --
-          \textbf{Reviewed by} \reviewerINAME$^{\orcid{\reviewerIORCID}}$ 
-           \&                  \reviewerIINAME$^{\orcid{\reviewerIIORCID}}$ --
-                               \href{\reviewURL}{Open Review}\par
-\noindent \textbf{Received}  \dateRECEIVED~--
-          \textbf{Accepted}  \dateACCEPTED~--
-          \textbf{Published} \datePUBLISHED\par
-\noindent \textbf{Copyright} ©~\articleYEAR~\authorsABBRV\par
-\noindent \textbf{Published} under a Creative Commons Attribution 4.0 International
-          (\href{https://creativecommons.org/licenses/by/4.0/}{\ccLogo\ccAttribution})
-          license\par
-~\\
-\noindent \textbf{Corresponding author}:
-\contactNAME~(\href{mailto:\contactEMAIL}{\contactEMAIL})\\
-\noindent \textbf{Competing Interests}:
-           The authors have declared that no competing interests exist\par
-\end{framed}
-%}
-
-  
-%\input{article-header.tex}
-%\sf \footnotesize \lipsum[1-2]
-\end{minipage}
-
-\clearpage
-
-
-\section{Introduction}
-
-This is the latex template for the ReScience journal
-\citep{Rougier:2017}\sidecite{Rougier:2017}, {\em a peer-reviewed
-journal that targets computational research and encourages the explicit
-replication of already published research, promoting new and open-source
-implementations in order to ensure that the original research is
-reproducible.}\\
-
-\subsection*{Font stack}
-\begin{description}
-\item[{\bfseries Serif font}] The
-  \href{http://www.tug.dk/FontCatalogue/urwpalladio}{Pazo Math fonts} are a
-  family of PostScript fonts suitable for typesetting mathematics in
-  combination with the Palatino family of text fonts.
-\item[{\sf \bfseries Sans Serif}] The
-  \href{http://www.tug.dk/FontCatalogue/firasans/}{Fira Sans fonts} is a
-  humanist sans-serif typeface designed by Erik Spiekermann, Ralph du Carrois,
-  Anja Meiners and Botio Nikoltchev of Carrois Type Design for the Firefox OS.
-\item[{\tt \bfseries Monotype}]
-  \href{http://www.tug.dk/FontCatalogue/inconsolata/}{Inconsolata} is
-  amonospaced font designed by Raph Levien and has regular and bold weights,
-  with additional glyphs and options to control slashed zero, upright quotes
-  and a shapelier lower-case L.
-\end{description}
-
-An article is composed of four different files:
-\begin{lstlisting}
-article-metadata.tex
-article-header.tex
-article-content.tex
-article-bibliography.bib
-\end{lstlisting}
-
-
-The {\tt article-metadata.tex} file is generated by the {\tt generate-latex.py}.\\
-
-\begin{minipage}{\headwidth}
-%%   \begin{framed}
-  \em \lipsum[1]
-%%   \end{framed}
-\end{minipage}
-
-
-\begin{figure}[htbp]
-  \begin{tikzpicture}
-    \node[draw, fill=black!5, dashed, thick,
-          text width=\textwidth, minimum height=3cm] at (0,0) {~~\sf Figure 1};
-  \end{tikzpicture}
-  \caption{Full width figure ({\tt width=\textbackslash headwidth}) uses a
-    regular caption}
-  \label{fig:1}
-\end{figure}
-
-\begin{figure}[htbp]
-  \marginnote{
-    \caption{Side caption can be easily inserted using the {\tt \textbackslash
-        marginnote} command. Note that you may have to slightly adjust the
-      vertical offset to align caption and the top of figure which is the
-      recommended layout.}}[-2.5em]
-  \begin{tikzpicture}
-    \node[draw, fill=black!5, dashed, thick,
-          text width=\textwidth, minimum height=3cm] at (0,0) {~~\sf Figure 2};
-  \end{tikzpicture}
-  \label{fig:2}
-\end{figure}
-
-\begin{figure}[htbp]
-  \begin{tikzpicture}
-    \node[draw, fill=black!5, dashed, thick,
-          text width=.99\headwidth, minimum height=3cm] at (0,0) {~~\sf Figure 3};
-  \end{tikzpicture}
-  \marginnote{
-    \caption{Full width figure using a side caption}}[-2.0em]
-  \label{fig:3}
-\end{figure}
-
-\section{Commands}
-
-The template defines various commands to help with the writing.
-\begin{lstlisting}
-\citep{Rougier:2017}\sidecite{Rougier:2017}
-\end{lstlisting}
-
-\lipsum[3]
-
-
+\input{article-cover.tex}
+\input{article-content.tex}
 \addcontentsline{toc}{section}{References}
 \renewcommand*{\bibfont}{\footnotesize \sffamily}
 \printbibliography
-
 \end{document}
+% =============================================================================
+

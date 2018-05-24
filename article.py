@@ -2,7 +2,6 @@
 # Released under the BSD two-clauses licence
 
 import yaml
-import dateutil.parser
 
 class Contributor:
     def __init__(self, role, name, orcid="", email="", affiliations=[]):
@@ -16,6 +15,8 @@ class Contributor:
         self.affiliations = affiliations
 
     def get_abbrvname(self, name):
+        if not name: return ""
+        
         if ',' in name:
             lastname = name.split(",")[0]
             firstnames = name.split(",")[1].strip().split(" ")
@@ -34,6 +35,7 @@ class Contributor:
 
 
     def get_lastname(self, name):
+        if not name: return ""
         # Rougier, Nicolas P.
         if ',' in name:
             lastname = name.split(",")[0].strip()
@@ -58,8 +60,9 @@ class Repository:
         self.doi = doi
 
 class Replication:
-    def __init__(self, bib, doi):
+    def __init__(self, bib, url, doi):
         self.bib = bib
+        self.url = url
         self.doi = doi
 
 class Review:
@@ -69,23 +72,38 @@ class Review:
 
 class Date:
     def __init__(self, date):
-        date = dateutil.parser.parse(date)
-        self.date = date
-        self.year = date.year
-        self.month = date.month
-        self.day = date.day
+        try:
+            import dateutil.parser
+
+            date = dateutil.parser.parse(date)
+            self.date = date
+            self.year = date.year
+            self.month = date.month
+            self.day = date.day
+            self.textual = self.date.strftime("%d %B %Y")
+        except:
+            import datetime
+            now = datetime.datetime.now()
+            self.date = now
+            self.year = now.year
+            self.month = now.month
+            self.day = now.day
+            self.textual = ""
 
     def __str__(self):
-        return self.date.strftime("%d %B %Y")
+        return self.textual
+        #return self.date.strftime("%d %B %Y")
 
     def __repr__(self):
-        return self.date.strftime("%d %B %Y")
+        return self.textual
+        # return self.date.strftime("%d %B %Y")
         
 
 class Article:
     def __init__(self, data):
         self.title = ""
         self.absract = ""
+        self.domain = ""
         self.keywords = []
         self.authors = []
         self.editors = []
@@ -103,8 +121,8 @@ class Article:
         self.date_accepted = ""
         self.date_published = ""
 
-        self.journal_name = "ReScience"
-        self.journal_issn = "2430-3658"
+        self.journal_name = "" 
+        self.journal_issn = ""
         self.journal_volume = ""
         self.journal_issue = ""
         self.article_number = ""
@@ -122,12 +140,16 @@ class Article:
             self.authors_short = self.authors[0].lastname + " et al."
             self.authors_abbrv = self.authors[0].abbrvname + " et al."
             self.authors_full = self.authors[0].fullname + " et al."
+        elif n==1:
+            self.authors_short += self.authors[0].lastname
+            self.authors_abbrv += self.authors[0].abbrvname
+            self.authors_full += self.authors[0].fullname
         else:
             for i in range(n-2):
                 self.authors_short += self.authors[i].lastname + ", "
                 self.authors_abbrv += self.authors[i].abbrvname + ", "
                 self.authors_full += self.authors[i].fullname + ", "
-                
+            
             self.authors_short += self.authors[n-2].lastname + " and "
             self.authors_short += self.authors[n-1].lastname
 
@@ -142,21 +164,22 @@ class Article:
     def parse(self, data):
         document = yaml.load(data)
 
-        self.title = document["title"]
-        self.abstract = document["abstract"]
+        self.title = document["title"] or ""
+        self.abstract = document["abstract"] or ""
         self.keywords = ", ".join(document["keywords"])
+        self.domain = document["domain"]
 
         # Miscellaneous dates
         dates = {key:value for data in document["dates"]
                            for key, value in data.items()}
-        self.date_received = Date(dates["received"])
-        self.date_accepted = Date(dates["accepted"])
-        self.date_published = Date(dates["published"])
+        self.date_received = Date(dates["received"] or "")
+        self.date_accepted = Date(dates["accepted"] or "")
+        self.date_published = Date(dates["published"] or "")
         
         # Add authors
         for item in document["authors"]:
             role = "author"
-            name = item["name"]
+            name = item["name"] or ""
             orcid = item.get("orcid","") or ""
             email = item.get("email","") or ""
             affiliations = item["affiliations"].split(",")
@@ -181,7 +204,7 @@ class Article:
         # Add editor & reviewers
         for item in document["contributors"]:
             role = item["role"]
-            name = item["name"]
+            name = item["name"] or ""
             orcid = item.get("orcid","") or ""
             contributor = Contributor(role, name, orcid)
             self.add_contributor(contributor)
@@ -215,7 +238,9 @@ class Article:
         # Replication
         replication = {key:value for replication in document["replication"]
                                  for key, value in replication.items()}
-        self.replication = Replication(replication["bib"], replication["doi"])
+        self.replication = Replication(replication["bib"],
+                                       replication["url"] or "",
+                                       replication["doi"] or "")
 
         # Article number & DOI
         article = {key:value for article in document["article"]
@@ -226,6 +251,8 @@ class Article:
         # Journal volume and issue
         journal = {key:value for journal in document["journal"]
                              for key, value in journal.items()}
+        self.journal_name = str(journal["name"])
+        self.journal_issn = str(journal["issn"])
         self.journal_volume = str(journal["volume"])
         self.journal_issue = str(journal["issue"])
         
