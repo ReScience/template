@@ -1,65 +1,141 @@
-\documentclass[a4paper,10.5pt]{article}
-\usepackage[
-  left=3cm, right=3cm, top=2.5cm, bottom=2.0cm,
-  footskip=1.5cm, headheight=22.2pt, headsep=1cm,
-  includehead, includefoot, heightrounded]{geometry}
+\documentclass[a4paper,11pt]{article}
+
+% ---- Encoding ---------------------------------------------------------------
 \usepackage[utf8]{inputenc}
+
+% --- Langage -----------------------------------------------------------------
 \usepackage[american]{babel}
 
-%
-\usepackage{csquotes}
 
-% Creative commons icons
-\usepackage{ccicons}
+% --- Various packages --------------------------------------------------------
+\usepackage{ifthen}
+\usepackage{tabularx}
+\usepackage{tikz}
+\usepackage{framed}
 
 
-% Palatino for rm and math | Helvetica for ss | Courier for tt
-%\usepackage{mathpazo} % math & rm
-%\linespread{1.05}        % Palatino needs more leading (space between lines)
-%\usepackage[scaled]{helvet} % ss
-%\usepackage[varqu]{zi4} % tt
+% --- Mathematics -------------------------------------------------------------
+\usepackage{amsmath}
 
-\usepackage{mathpazo} % math & rm
-\usepackage{FiraSans}
-\usepackage{FiraMono}
-%\usepackage{sfmath}
-%\usepackage{mathtools}
+% --- Page layout -------------------------------------------------------------
+\usepackage[a4paper]{geometry}
+\geometry{left=3.5cm, right=2.5cm, height=28cm}
+\geometry{footskip=1.25cm, headheight=1cm, headsep=1.25cm}
+\geometry{marginparsep=0.0cm, marginpar=0.0cm}
+\geometry{includehead, includefoot, includemp}
+
+
+% --- Font stack --------------------------------------------------------------
+\usepackage{mathpazo}   % Roman & math
+\usepackage[scale=0.95]{FiraSans}   % Sans Serif
+\usepackage[varqu]{zi4} % Monotype
+
+
+% --- Colors ------------------------------------------------------------------
+\usepackage{xcolor}
+\definecolor{darkred}{HTML}{CF232B}
+\definecolor{darkblue}{HTML}{2B23CF}
+\definecolor{darkgray}{HTML}{555555}
+\definecolor{lightgray}{HTML}{F9F9F9}
+%\definecolor{citecolor}{HTML}{EB811B}
+\colorlet{citecolor}{darkblue}
+\colorlet{linkcolor}{citecolor}
+\colorlet{urlcolor}{citecolor}
+
+
+% -- Section titles & ToC -----------------------------------------------------
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\bfseries}
+%\usepackage{tocloft}
+%\renewcommand{\thesection}{}
+%\renewcommand{\cftsecfont}{\sffamily}
+%\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+%\setcounter{tocdepth}{1}
+
+% With babel
+\addto\captionsamerican{
+  \renewcommand{\contentsname}
+    {\normalsize \sf \bfseries Contents}%
+}
+% Without babel
+% \renewcommand{\contentsname}{}
+
 %\makeatletter
-%\def\bfseries@sf{m}
-%\SetSymbolFont{operators}{normal}{\math@encoding}{\math@sfdefault}{l}{n}
-%\SetSymbolFont{operators}{bold}{\math@encoding}{\math@sfdefault}{m}{n}
-%\DeclareSymbolFont{SFMath}{\math@encoding}{\math@sfdefault}{l}{sl}
-%\SetSymbolFont{SFMath}{normal}{\math@encoding}{\math@sfdefault}{l}{sl}
-%\SetSymbolFont{SFMath}{bold}{\math@encoding}{\math@sfdefault}{m}{\mathnormal@bold@shape}
+%\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+%\let\sectionignore\@gobbletwo
+%\let\latex@numberline\numberline
+%\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
 %\makeatother
 
+% --- Sidenotes ---------------------------------------------------------------
+% Used in \sidenote
+% Changed to meet the question of user J. Bratt
+%  (https://tex.stackexchange.com/questions/361622).
+%% \usepackage{sidenotes}
+%% \makeatletter
+%% \RenewDocumentCommand \sidenotetext { o o +m }
+%% {\IfNoValueOrEmptyTF{#1}{
+%% \@sidenotes@placemarginal{#2}{\textsuperscript{\sf\thesidenote}{}~\sf\footnotesize#3}
+%% \refstepcounter{sidenote}}
+%% {\@sidenotes@placemarginal{#2}{\textsuperscript{#1}~#3}}}
+%% \makeatother
 
-% Maths
-% \usepackage{amsmath, amssymb, amsthm, mathtools}
 
-% Graphics
-\usepackage{graphicx}
-
-% First page, bottom header
-\usepackage[letterspace=150]{microtype}
-
-% For the ifempty macro
-\usepackage{etoolbox}
-
-% For two columns bibliography
-\usepackage{multicol}
-
-% Sans-serif section titles
-\usepackage{sectsty}
-\allsectionsfont{\sffamily}
-
-% Figure caption
+% --- Captions ----------------------------------------------------------------
 \usepackage[labelsep=period]{caption}
 \renewcommand{\captionfont}{\small}
 \renewcommand{\captionlabelfont}{\small\sffamily\bfseries}
+% \captionsetup[figure]{justification=justified, singlelinecheck=false}
+% \captionsetup[table]{justification=justified, singlelinecheck=false}
 
 
-% Biber
+% --- Hyperref & colors -------------------------------------------------------
+\usepackage[pdfusetitle,
+            bookmarks=true,
+            breaklinks=true,
+            pdfborder={0 0 0},
+            citecolor=citecolor,
+            linkcolor=linkcolor,
+            urlcolor=urlcolor,
+            colorlinks=true,
+            linktocpage=false,
+            hyperindex=true,
+            colorlinks=true,
+            linktocpage=false,
+            linkbordercolor=white]{hyperref}
+\urlstyle{sf}
+
+
+% --- Listings ----------------------------------------------------------------
+\usepackage{listings}
+\lstset{%
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{black},
+  commentstyle=\color{gray},
+  stringstyle=\color{black},
+  backgroundcolor=\color{white},
+  numbers=none,
+  numberstyle=\ttfamily,
+  stepnumber=2,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  frame=none,
+  framerule=0.5pt,
+  tabsize=2,
+  rulesep=5em,
+  captionpos=b,
+  breaklines=true,
+  breakatwhitespace=false,
+  framexleftmargin=0em,
+  xleftmargin=0em,
+  framexrightmargin=0em,
+  xrightmargin=0em,
+  aboveskip=0.5em,
+  belowskip=0.5em,
+}
+
+% --- Bibliography ------------------------------------------------------------
 \usepackage[
   backend=biber,
   style = numeric,
@@ -68,40 +144,54 @@
   giveninits = true,
   maxcitenames=3,
   mincitenames=1,
-  maxbibnames=1000,
+  maxbibnames=10,
   isbn = false,
   url = false,
   doi = false,
   autocite = superscript,
   natbib = true]{biblatex}
+\usepackage{bibentry}
 \DeclareFieldFormat{labelnumberwidth}{#1\adddot}
 
+% Side margin cite 
+%% \newcommand{\sidecite}[1]{\citep{#1}\marginpar{\sf\scriptsize\fullcite{#1}}}
 
-% Hyperref & colors
-\usepackage{xcolor}
-\definecolor{blendedblue}{rgb}{0.2, 0.2, 0.6}
-\definecolor{blendedred}{rgb}{0.8, 0.2, 0.2}
-\usepackage[pdfusetitle,
-            bookmarks=true,
-            breaklinks=true,
-            pdfborder={0 0 0},
-            citecolor=blendedblue,
-            colorlinks=true,
-            linkcolor=blendedblue,
-            urlcolor=blendedblue,
-            citecolor=blendedblue,
-            linktocpage=false,
-            hyperindex=true,
-            linkbordercolor=white]{hyperref}
-\usepackage{hyperref}
-\hypersetup{colorlinks=true}
 
-% Author and affiliations
-\usepackage{authblk}
+% --- Layout ------------------------------------------------------------------
+% No indentation at beginning of a new paragraph
+\setlength\parindent{0pt}
+
+% No space between items in itemize and enuemrate lists
+\usepackage{enumitem}
+\setlist[itemize]{noitemsep}
+\setlist[enumerate]{noitemsep}
+
+
+% --- Authors block -----------------------------------------------------------
+\usepackage{authblk,etoolbox}
+
+\makeatletter
+% patch \maketitle so that it doesn't center
+\patchcmd{\@maketitle}{center}{flushleft}{}{}
+\patchcmd{\@maketitle}{center}{flushleft}{}{}
+% patch \maketitle so that the font size for the title is normal
+\patchcmd{\@maketitle}{\LARGE}{\Large\sf\bfseries\vspace{-2.5em}}{}{}
+
+% patch the patch by authblk so that the author block is flush left
+\def\maketitle{{%
+  \renewenvironment{tabular}[2][]
+    {\begin{flushleft}}
+    {\end{flushleft}}
+  \AB@maketitle}}
+\makeatother
+
+\setlength{\affilsep}{0.25em}
 \renewcommand\Affilfont{\normalfont\sf\footnotesize}
 \renewcommand\Authfont{\sf\bfseries\small}
+\renewcommand\Authands{\normalfont\sf\small}
 
-% Various convenient macros
+
+% --- Various convenient macros -----------------------------------------------
 \usepackage[many]{tcolorbox}
 \newtcbox{\iconbox}[1][]{%
   enhanced,nobeforeafter,tcbox raise base, 
@@ -112,97 +202,82 @@
 \newcommand{\orcid}[1]{\href{https://orcid.org/#1}{\iconbox{ID}}}
 \newcommand{\doi}[1]{\href{http://doi.org/#1}{#1}}
 \newcommand{\github}[1]{\href{https://github.com/#1}{github.com/#1}}
-\definecolor{red}{HTML}{CF232B}
-\newcommand{\ReScience}{{\bfseries Re\textcolor{red}{Science C}}}
+
+% See https://tex.stackexchange.com/questions/99316/symbol-for-external-links
+\newcommand{\ExternalLink}{%
+    \tikz[x=1.2ex, y=1.2ex, baseline=-0.05ex]{% 
+        \begin{scope}[x=1ex, y=1ex]
+            \clip (-0.1,-0.1) 
+                --++ (-0, 1.2) 
+                --++ (0.6, 0) 
+                --++ (0, -0.6) 
+                --++ (0.6, 0) 
+                --++ (0, -1);
+            \path[draw, 
+                line width = 0.5, 
+                rounded corners=0.5] 
+                (0,0) rectangle (1,1);
+        \end{scope}
+        \path[draw, line width = 0.5] (0.5, 0.5) 
+            -- (1, 1);
+        \path[draw, line width = 0.5] (0.6, 1) 
+            -- (1, 1) -- (1, 0.6);
+        }
+    }
 
 
-% Line numbers (discrete color)
-% \usepackage{lineno}
-% \renewcommand{\linenumberfont}{\sf\footnotesize\color{lightgray}}
 
-
-% Headers & footers
+% --- Headers & footers -------------------------------------------------------
+\input{article-metadata.tex}
+\newcommand{\ReScience}{\sf Re{\bfseries \textcolor{darkred}{Science}} }
 \usepackage{fancyhdr}
+
 \pagestyle{fancy}
-\fancyhf{}
-\lhead{}
-\renewcommand{\footrulewidth}{0.5pt}
+\fancypagestyle{plain}{}
+\addtolength{\headwidth}{\marginparsep}
+\addtolength{\headwidth}{\marginparwidth}
+\def\fullwidth{\headwidth}
+\def\sidewidth{\marginparwidth}
 \renewcommand{\headrulewidth}{0.0pt}
-
-%\lhead{\footnotesize \sf ReScience~$|$
-%                        \href{https://rescience.github.io}{rescience.github.io}}
-
-% First page
-\fancypagestyle{titlepage} {
-  \fancyhf{}
-  \chead{
-   \sf \LARGE \ReScience\vspace{-5mm}\\
-   \noindent\rule{9cm}{0.4pt}\\
-   \normalsize \noindent \vspace{-3mm} \authorsSHORT~\articleYEAR
-  }
-  \renewcommand{\headrulewidth}{0.0pt}
-  \renewcommand{\footrulewidth}{0.0pt}
-  \cfoot{%\vfill \small \sf ReScience C\\
-         \footnotesize {\lsstyle \normalfont \scshape \hspace{0.75pt} Open Access}
-  }
+\lhead{\sf \authorsSHORT~\articleYEAR}
+\chead{\sf }
+\rhead{\ifthenelse{\value{page}=1}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \node [shift={(-3.5cm,-4cm)}] at (current page.north east) {
+     \begin{tikzpicture}[remember picture, overlay]
+       \fill [fill=darkred, opacity=1.0] (0,0) rectangle (2.cm,4cm);
+       \node [shift={(1cm,1cm)}, opacity=1.0]
+             {\includegraphics[width=1.5cm]{logo.pdf}};
+     \end{tikzpicture}
+  };
+\end{tikzpicture}}{}}
+\renewcommand{\footrulewidth}{0.0pt}
+\lfoot{\sf \ReScience -- \today}
+\cfoot{\sf }
+\rfoot{
+  \ifthenelse{\value{page}=1}
+  {\sf \thepage}
+  {\begin{tikzpicture}[remember picture, overlay]
+      \node [shift={(-2.25cm,0cm)}] at (current page.south east) {
+        \begin{tikzpicture}[remember picture, overlay]
+          \fill [fill=darkred, opacity=1.0] (0,0) rectangle (0.75cm,1.50cm);
+          \node [shift={(.375cm,1.1cm)}, color=white] {\sf \bfseries \thepage};
+        \end{tikzpicture}
+      };
+    \end{tikzpicture}}
 }
 
-% No date
-\date{}
-
-
 
 
 % =============================================================================
-\input{article-metadata.tex}
-% =============================================================================
-
-
-%\lfoot{\footnotesize \sf DOI:~\doi{\articleDOI}}
-%\rhead{\footnotesize \sf \articleHEAD}
-%\rfoot{\footnotesize \sf Volume \articleVOLUME~$|$~Article \#\articleNUMBER}
-\lfoot{\footnotesize \sf ReScience C} %-- Vol. \journalVOLUME}
-\rfoot{\footnotesize \sf \thepage}
-%\rfoot{\\footnotesize \sf Volume \articleVOLUME~$|$~Article \#\articleNUMBER}
-\rhead{\footnotesize \sf \authorsSHORT~\articleYEAR}
-%\rfoot{\footnotesize \sf Volume \articleVOLUME~$|$~Article \#\articleNUMBER}
-
-
-
-\title{\Large \sf \bfseries \articleTITLE}
-
+\bibliography{article.bib}
 
 \begin{document}
-\maketitle
-\thispagestyle{titlepage}
-\noindent {\bfseries Abstract}. \articleABSTRACT\\
-
-\noindent {\bfseries Keywords:} \articleKEYWORDS\\
-
-\noindent {\bfseries A replication of }
-          \href{http://doi.org/\replicationDOI}{\replicationBIB}\\
-
-% =============================================================================
-\input{article-header.tex}
-%=============================================================================
-
-\newgeometry{
-  left=2cm, right=4cm, top=1.0cm, bottom=1.5cm,
-%  marginpar=4cm,
-  footskip=1.5cm, headsep=1cm, includehead, includefoot, heightrounded}
-
-
-%=============================================================================
+\input{article-cover.tex}
 \input{article-content.tex}
-%=============================================================================
-
-
+\addcontentsline{toc}{section}{References}
 \renewcommand*{\bibfont}{\footnotesize \sffamily}
-\begingroup\setlength{\multicolsep}{0pt}
-\begin{multicols}{2}[\printbibheading]
-\printbibliography[heading=none]
-\end{multicols}\endgroup
-% \printbibliography[title=References]
-
+\printbibliography
 \end{document}
+% =============================================================================
 

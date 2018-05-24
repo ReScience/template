@@ -1,0 +1,100 @@
+% --- Domain ------------------------------------------------------------------
+%
+~\\ {\sf \large \textcolor{gray}{Editorial}}
+%
+% --- Title -------------------------------------------------------------------
+%
+{\let\newpage\relax\maketitle} \maketitle
+
+%
+% --- Abstract ----------------------------------------------------------------
+{\sf \bfseries Abstract} \articleABSTRACT\\
+
+% --- Keywords ----------------------------------------------------------------
+{\sf \bfseries Keywords:} \articleKEYWORDS\\
+
+% --- Replication -------------------------------------------------------------
+%
+{\sf \bfseries A replication of}
+\ifdefempty{\replicationURL}{\href{http://doi.org/\replicationDOI}{\sf \replicationBIB}}
+                            {\href{\replicationURL}{\sf \replicationBIB}}.\\
+
+% --- Code repository ---------------------------------------------------------
+{\sf \bfseries Code:}
+   \href{\codeURL}{\sf \codeURL}
+   \ifdefempty{\codeDOI}{}{ -- \textbf{DOI} \doi{\codeDOI}}\\
+\ifdefempty{\dataURL}{}{
+  \textbf{Data:} \href{\dataURL}{\sf \dataURL}
+  \ifdefempty{\dataDOI}{}{ -- \textbf{DOI} \doi{\dataDOI}}\\
+}
+
+
+% --- Spacing -----------------------------------------------------------------
+\vfill
+
+% --- Editor block ------------------------------------------------------------
+\begin{minipage}{\headwidth}
+\vfill
+%\noindent\makebox[\textwidth]{\rule{\textwidth}{0.5pt}}
+\begin{framed}
+  \footnotesize \sf
+
+  %% Submission only
+  \ifdefempty{\articleDOI}{
+%    \begin{tcolorbox}[
+%        arc=0pt, boxsep=0pt, boxrule=0.5pt,
+%        colframe=white,colback=darkred, coltext=white]
+    \textcolor{darkred}{\large \bfseries Non peer-reviewed author version}
+  }
+  %% Published
+  {\textbf{Cite as} \articleTITLE, \authorsABBRV.
+                     In: {\em \journalNAME}
+                     \journalVOLUME(\#\articleNUMBER), \articleYEAR.
+                     \ifdefempty{\articleDOI}{}{\textbf{DOI} \doi{\articleDOI}}.\par}
+
+% --- Code --------------------------------------------------------------------
+%% \textbf{Code repository} at \href{\codeURL}{\codeURL}
+%%                             \ifdefempty{\codeDOI}{}{ -- \textbf{DOI} \doi{\codeDOI}}\\
+% --- Data --------------------------------------------------------------------
+%% \ifdefempty{\dataURL}{}{
+%%   \textbf{Data repository} at \href{\dataURL}{\dataURL}
+%%   \ifdefempty{\dataDOI}{}{ -- \textbf{DOI} \doi{\dataDOI}}\\
+%% }
+%%~\\
+% --- Editor --------------------------------------------------------------------
+\ifdefempty{\editorNAME}{}{
+  \textbf{Edited by}
+  \editorNAME\ifdefempty{\editorORCID}{}{$^{\orcid{\editorORCID}}$} --
+  \textbf{Reviewed by}
+  \reviewerINAME\ifdefempty{\reviewerIORCID}{}{$^{\orcid{\reviewerIORCID}}$}
+  \&
+  \reviewerINAME\ifdefempty{\reviewerIIORCID}{}{$^{\orcid{\reviewerIIORCID}}$}
+  \href{\reviewURL}{\sf \bfseries Open Review}\par
+}
+%
+% --- Dates --------------------------------------------------------------------
+\ifdefempty{\dateRECEIVED}{}{
+  \textbf{Received}  \dateRECEIVED
+  \ifdefempty{\dateACCEPTED}{}{-- \textbf{Accepted}\dateACCEPTED}
+  \ifdefempty{\datePUBLISHED}{}{-- \textbf{Accepted}\datePUBLISHED}\\}
+
+% --- Copyright --------------------------------------------------------------------
+\textbf{Copyright} ©~\articleYEAR~\authorsABBRV\par
+\textbf{Published} under a Creative Commons Attribution 4.0 International
+(\href{https://creativecommons.org/licenses/by/4.0/}{\ccLogo\ccAttribution}) license\par
+%
+\textbf{Corresponding author}:
+\contactNAME~(\href{mailto:\contactEMAIL}{\contactEMAIL})\\
+\textbf{Competing Interests}:
+The authors have declared that no competing interests exist\par
+\end{framed}
+%}
+
+  
+%\input{article-header.tex}
+%\sf \footnotesize \lipsum[1-2]
+\end{minipage}
+
+
+\clearpage
+
