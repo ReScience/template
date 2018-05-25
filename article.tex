@@ -1,4 +1,4 @@
-\documentclass[a4paper,10pt]{article}
+\documentclass[a4paper,11pt]{article}
 
 % ---- Encoding ---------------------------------------------------------------
 \usepackage[utf8]{inputenc}
@@ -9,11 +9,11 @@
 
 % --- Various packages --------------------------------------------------------
 \usepackage{ifthen}
-\usepackage{marginnote}
 \usepackage{tabularx}
 \usepackage{tikz}
 \usepackage{framed}
-\usepackage{lipsum}
+%% \usepackage{ccicons}
+
 
 
 % --- Mathematics -------------------------------------------------------------
@@ -21,9 +21,9 @@
 
 % --- Page layout -------------------------------------------------------------
 \usepackage[a4paper]{geometry}
-\geometry{left=1.5cm, right=1.5cm, height=28cm}
+\geometry{left=3.5cm, right=2.5cm, height=28cm}
 \geometry{footskip=1.25cm, headheight=1cm, headsep=1.25cm}
-\geometry{marginparsep=0.5cm, marginpar=5.5cm}
+\geometry{marginparsep=0.0cm, marginpar=0.0cm}
 \geometry{includehead, includefoot, includemp}
 
 
@@ -39,7 +39,6 @@
 \definecolor{darkblue}{HTML}{2B23CF}
 \definecolor{darkgray}{HTML}{555555}
 \definecolor{lightgray}{HTML}{F9F9F9}
-
 %\definecolor{citecolor}{HTML}{EB811B}
 \colorlet{citecolor}{darkblue}
 \colorlet{linkcolor}{citecolor}
@@ -49,13 +48,11 @@
 % -- Section titles & ToC -----------------------------------------------------
 \usepackage{sectsty}
 \allsectionsfont{\sffamily\bfseries}
-
-\usepackage{tocloft}
-\renewcommand{\thesection}{}
-\renewcommand{\cftsecfont}{\sffamily}
-\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
-
-\setcounter{tocdepth}{1}
+%\usepackage{tocloft}
+%\renewcommand{\thesection}{}
+%\renewcommand{\cftsecfont}{\sffamily}
+%\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+%\setcounter{tocdepth}{1}
 
 % With babel
 \addto\captionsamerican{
@@ -65,33 +62,33 @@
 % Without babel
 % \renewcommand{\contentsname}{}
 
-\makeatletter
-\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
-\let\sectionignore\@gobbletwo
-\let\latex@numberline\numberline
-\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
-\makeatother
+%\makeatletter
+%\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+%\let\sectionignore\@gobbletwo
+%\let\latex@numberline\numberline
+%\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+%\makeatother
 
 % --- Sidenotes ---------------------------------------------------------------
-\usepackage{sidenotes}
 % Used in \sidenote
 % Changed to meet the question of user J. Bratt
 %  (https://tex.stackexchange.com/questions/361622).
-\makeatletter
-\RenewDocumentCommand \sidenotetext { o o +m }
-{\IfNoValueOrEmptyTF{#1}{
-\@sidenotes@placemarginal{#2}{\textsuperscript{\sf\thesidenote}{}~\sf\footnotesize#3}
-\refstepcounter{sidenote}}
-{\@sidenotes@placemarginal{#2}{\textsuperscript{#1}~#3}}}
-\makeatother
+%% \usepackage{sidenotes}
+%% \makeatletter
+%% \RenewDocumentCommand \sidenotetext { o o +m }
+%% {\IfNoValueOrEmptyTF{#1}{
+%% \@sidenotes@placemarginal{#2}{\textsuperscript{\sf\thesidenote}{}~\sf\footnotesize#3}
+%% \refstepcounter{sidenote}}
+%% {\@sidenotes@placemarginal{#2}{\textsuperscript{#1}~#3}}}
+%% \makeatother
 
 
 % --- Captions ----------------------------------------------------------------
 \usepackage[labelsep=period]{caption}
 \renewcommand{\captionfont}{\small}
 \renewcommand{\captionlabelfont}{\small\sffamily\bfseries}
-\captionsetup[figure]{justification=justified, singlelinecheck=false}
-\captionsetup[table]{justification=justified, singlelinecheck=false}
+% \captionsetup[figure]{justification=justified, singlelinecheck=false}
+% \captionsetup[table]{justification=justified, singlelinecheck=false}
 
 
 % --- Hyperref & colors -------------------------------------------------------
@@ -114,7 +111,6 @@
 % --- Listings ----------------------------------------------------------------
 \usepackage{listings}
 \lstset{%
-  % language={Latex},
   basicstyle=\ttfamily\small,
   keywordstyle=\color{black}\bfseries,
   commentstyle=\color{gray},
@@ -133,9 +129,9 @@
   captionpos=b,
   breaklines=true,
   breakatwhitespace=false,
-  framexleftmargin=0.em,
-  xleftmargin=0.0em,
-  framexrightmargin=0.0em,
+  framexleftmargin=0em,
+  xleftmargin=0em,
+  framexrightmargin=0em,
   xrightmargin=0em,
   aboveskip=0.5em,
   belowskip=0.5em,
@@ -160,7 +156,7 @@
 \DeclareFieldFormat{labelnumberwidth}{#1\adddot}
 
 % Side margin cite 
-\newcommand{\sidecite}[1]{\citep{#1}\marginpar{\sf\scriptsize\fullcite{#1}}}
+%% \newcommand{\sidecite}[1]{\citep{#1}\marginpar{\sf\scriptsize\fullcite{#1}}}
 
 
 % --- Layout ------------------------------------------------------------------
@@ -233,14 +229,10 @@
 
 
 
-
 % --- Headers & footers -------------------------------------------------------
 \input{article-metadata.tex}
-
 \newcommand{\ReScience}{\sf Re{\bfseries \textcolor{darkred}{Science}} }
-
 \usepackage{fancyhdr}
-\usepackage{ccicons}
 
 \pagestyle{fancy}
 \fancypagestyle{plain}{}
@@ -249,7 +241,7 @@
 \def\fullwidth{\headwidth}
 \def\sidewidth{\marginparwidth}
 \renewcommand{\headrulewidth}{0.0pt}
-\lhead{\sf \ReScience -- Rougier 2018}
+\lhead{\sf \authorsSHORT~\articleYEAR}
 \chead{\sf }
 \rhead{\ifthenelse{\value{page}=1}{%
 \begin{tikzpicture}[remember picture, overlay]
@@ -260,9 +252,9 @@
              {\includegraphics[width=1.5cm]{logo.pdf}};
      \end{tikzpicture}
   };
-\end{tikzpicture}}{\sf \large \textcolor{gray}{Editorial}}}
+\end{tikzpicture}}{}}
 \renewcommand{\footrulewidth}{0.0pt}
-\lfoot{\sf \today}
+\lfoot{\sf \ReScience -- \today}
 \cfoot{\sf }
 \rfoot{
   \ifthenelse{\value{page}=1}
