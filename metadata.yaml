@@ -46,7 +46,8 @@ data:
 
 # What is the original article (description and DOI)
 replication:
- - bib: "N. P. Rougier et al. “Sustainable computational science: the ReScience initiative.” In: PeerJ Computer Science 3 (Dec. 2017), e142."
+ - bib: "N. P. Rougier et al. Sustainable computational science:
+         the ReScience initiative. In: PeerJ Computer Science 3 (Dec. 2017), e142"
  - url: 
  - doi: 10.7717/peerj-cs.142
 
