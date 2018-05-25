@@ -10,6 +10,7 @@
 % --- Various packages --------------------------------------------------------
 \usepackage{ifthen}
 \usepackage{marginnote}
+\usepackage{tabularx}
 \usepackage{tikz}
 \usepackage{framed}
 \usepackage{lipsum}
@@ -90,6 +91,7 @@
 \renewcommand{\captionfont}{\small}
 \renewcommand{\captionlabelfont}{\small\sffamily\bfseries}
 \captionsetup[figure]{justification=justified, singlelinecheck=false}
+\captionsetup[table]{justification=justified, singlelinecheck=false}
 
 
 % --- Hyperref & colors -------------------------------------------------------
@@ -114,10 +116,10 @@
 \lstset{%
   % language={Latex},
   basicstyle=\ttfamily\small,
-  keywordstyle=\color{mLightBrown}\bfseries,
-  commentstyle=\color{mLightGreen},
-  stringstyle=\color{mLightGreen},
-  backgroundcolor=\color{lightgray},
+  keywordstyle=\color{black}\bfseries,
+  commentstyle=\color{gray},
+  stringstyle=\color{blue},
+  backgroundcolor=\color{white},
   numbers=none,
   numberstyle=\ttfamily,
   stepnumber=2,
@@ -158,7 +160,7 @@
 \DeclareFieldFormat{labelnumberwidth}{#1\adddot}
 
 % Side margin cite 
-\newcommand{\sidecite}[1]{\marginpar{\sf\scriptsize\fullcite{#1}}}
+\newcommand{\sidecite}[1]{\citep{#1}\marginpar{\sf\scriptsize\fullcite{#1}}}
 
 
 % --- Layout ------------------------------------------------------------------
@@ -207,6 +209,27 @@
 \newcommand{\doi}[1]{\href{http://doi.org/#1}{#1}}
 \newcommand{\github}[1]{\href{https://github.com/#1}{github.com/#1}}
 
+% See https://tex.stackexchange.com/questions/99316/symbol-for-external-links
+\newcommand{\ExternalLink}{%
+    \tikz[x=1.2ex, y=1.2ex, baseline=-0.05ex]{% 
+        \begin{scope}[x=1ex, y=1ex]
+            \clip (-0.1,-0.1) 
+                --++ (-0, 1.2) 
+                --++ (0.6, 0) 
+                --++ (0, -0.6) 
+                --++ (0.6, 0) 
+                --++ (0, -1);
+            \path[draw, 
+                line width = 0.5, 
+                rounded corners=0.5] 
+                (0,0) rectangle (1,1);
+        \end{scope}
+        \path[draw, line width = 0.5] (0.5, 0.5) 
+            -- (1, 1);
+        \path[draw, line width = 0.5] (0.6, 1) 
+            -- (1, 1) -- (1, 0.6);
+        }
+    }
 
 
 
@@ -223,6 +246,8 @@
 \fancypagestyle{plain}{}
 \addtolength{\headwidth}{\marginparsep}
 \addtolength{\headwidth}{\marginparwidth}
+\def\fullwidth{\headwidth}
+\def\sidewidth{\marginparwidth}
 \renewcommand{\headrulewidth}{0.0pt}
 \lhead{\sf \ReScience -- Rougier 2018}
 \chead{\sf }
