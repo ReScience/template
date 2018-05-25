@@ -6,7 +6,6 @@
 %
 {\let\newpage\relax\maketitle} \maketitle
 
-%
 % --- Abstract ----------------------------------------------------------------
 {\sf \bfseries Abstract} \articleABSTRACT\\
 
@@ -15,9 +14,10 @@
 
 % --- Replication -------------------------------------------------------------
 %
+\ifdefempty{\replicationBIB}{}{
 {\sf \bfseries A replication of}
 \ifdefempty{\replicationURL}{\href{http://doi.org/\replicationDOI}{\sf \replicationBIB}}
-                            {\href{\replicationURL}{\sf \replicationBIB}}.\\
+                            {\href{\replicationURL}{\sf \replicationBIB}}.\\}
 
 % --- Code repository ---------------------------------------------------------
 {\sf \bfseries Code:}
@@ -80,8 +80,8 @@
 
 % --- Copyright --------------------------------------------------------------------
 \textbf{Copyright} ©~\articleYEAR~\authorsABBRV\par
-\textbf{Published} under a Creative Commons Attribution 4.0 International
-(\href{https://creativecommons.org/licenses/by/4.0/}{\ccLogo\ccAttribution}) license\par
+\textbf{Published} under a Creative Commons Attribution 4.0 International license
+\href{https://creativecommons.org/licenses/by/4.0/}{\ExternalLink}\par
 %
 \textbf{Corresponding author}:
 \contactNAME~(\href{mailto:\contactEMAIL}{\contactEMAIL})\\

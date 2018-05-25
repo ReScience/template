@@ -1,21 +1,21 @@
-**[Re] Interaction between cognitive and motor cortico-basal ganglia loops during decision making: a computational study**, M. Topalidou and N.P. Rougier, ReScience 1(#1), 2015.
+**ReScience Article Template**, N.P. Rougier, ReScience None(#None), 2018.
 
-**Abstract.** We propose a reference implementation of “Interaction between cognitive and motor cortico-basal ganglia loops during decision making: a computational study”, M. Guthrie, A. Leblois, A. Garenne, and T. Boraud, Journal of Neurophysiology, 109(12), 2013 that introduces an action selection mechanism in cortico-basal ganglia loops based on a competition between the positive feed- back, direct pathway through the striatum and the negative feedback, hyperdirect pathway through the subthalamic nucleus. The original implementation was made in Delphi (Object Pascal) whose sources are available on request to any of the author of the original article. We have used these sources to disambiguate ambiguous and missing information in the original article. The reference implementation we propose has been coded in Python for ease of reading and Cython for performances because the main result includes a batch of 250 experiments over 120 trials that would be too slow for regular Python scripts.
+**Abstract.** This article is a proposition for a new article template for the ReScience C (computational replication) and ReScience X (experimental replication) journals. It is loosely based after Edward Tufte’s book style where the large left columns containes the main text and the right columns is used for auxiliary informations such as notes, captions or references. The template requires a standard TeXLive installation in order to compile it and this PDF has been compiled using TeXLive 2017 (pdflatex). Both the style, the layout and the colors of the template aim at giving ReScience a strong but subtle identity.
 
-**Keywords:** python, computational neuroscience
+**Keywords:** Latex, Template, ReScience
 
-**A Replication of** [M. Guthrie, A. Leblois, A. Garenne, and T. Boraud. Interaction between cognitive and motor cortico-basal ganglia loops during decision making: a computational study. In: Journal of Neurophysiology 109.12 (2013)](http://doi.org/10.1152/jn.00026.2013)  
+**A Replication of** [Visual Explanations: Images And Quantities, Evidence And Narrative, Edward R. Tufte, Graphics Press, 1997](http://doi.org/)  
 
 ----
 
-**Cite as**: [Re] Interaction between cognitive and motor cortico-basal ganglia loops during decision making: a computational study, M. Topalidou and N.P. Rougier, ReScience 1(#1), 2015. **DOI**: [10.5281/zenodo.27944](http://doi.org/10.5281/zenodo.27944).
+**Cite as**: ReScience Article Template, N.P. Rougier, ReScience None(#None), 2018. **DOI**: [](http://doi.org/).
 
-**Code repository** at [github.com/rougier/model-code](https://github.com/rougier/model-code) - **DOI** [10.5281/zenodo.27944](http://doi.org/10.5281/zenodo.27944)  
-**Data repository** at [github.com/rougier/model-data](https://github.com/rougier/model-data) - **DOI** [10.5281/zenodo.27944.](http://doi.org/10.5281/zenodo.27944.)  
+**Code repository** at [https://github.com/ReScience/ReScience-template](https://https://github.com/ReScience/ReScience-template) - **DOI** [](http://doi.org/)  
+**Data repository** at [](https://) - **DOI** [](http://doi.org/)  
 
-**Edited** by Tiziano Zito - **Reviewed** by Benoît Girard and Mehdi Khamassi  
-**Received** 09 June 2015 - **Accepted** 12 August 2015 - **Published** 14 August 2015 - [Open Review](_.review.url)  
-**Copyright** © 2015 M. Topalidou and N.P. Rougier  
+**Edited** by  - **Reviewed** by  and   
+**Received** 24 May 2018 - **Accepted**  - **Published**  - [Open Review](_.review.url)  
+**Copyright** © 2018 N.P. Rougier  
 
 **Published** under a [Creative Commons Attribution 4.0 International license](https://creativecommons.org/licenses/by/4.0/)  
 **Corresponding author**: Nicolas P. Rougier ([Nicolas.Rougier@inria.fr](mailto:Nicolas.Rougier@inria.fr))  

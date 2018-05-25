@@ -52,15 +52,15 @@ replication:
  - doi: 
 
 # Abstract. don't forget to surround it with double quotes
-abstract: "This article is a proposition for a new article template for the
-  ReScience C (computational replication) and ReScience X (experimental
-  replication) journals. It is loosely based after Edward Tufte’s book style
-  where the large left columns containes the main text and the right columns is
-  used for auxiliary informations such as notes, captions or references. The
-  template requires a standard TeXLive installation in order to compile it and
-  this PDF has been compiled using TeXLive 2017 (pdflatex). Both the style, the
-  layout and the colors of the template aim at giving ReScience a strong but
-  subtle identity."
+abstract: "This article is a proposition for a new article template for both
+  the ReScience C (computational replication) and the upcoming ReScience X
+  (experimental replication) journals. It is loosely based after
+  Edward Tufte’s book style where the large left column contains the main text
+  and the right column is used for auxiliary informations such as notes,
+  captions or references. The template requires a standard TeXLive installation
+  in order to compile it and this PDF has been compiled using TeXLive 2017
+  (pdflatex). Both the style, the layout and the colors of the template aim at
+  giving ReScience a strong but subtle identity."
 
 # Scientific domain of the article (e.g. Computational Neuroscience)
 domain: Editorial
