@@ -1,8 +1,8 @@
 \section*{Introduction}
 
-What a nice template\footnote{I did it myself!} for \citep{Rougier:2017}.\\
-
-\lipsum*[1]\\
+What a nice template\footnote{I did it myself!} for \citep{Rougier:2017}
+\marginpar{\sf \footnotesize Margin note can be used to insert a message in the
+  margin such as for example a reference: \fullcite{Rougier:2017}}. \lipsum*[1]
 
 
 \subsection*{Figures}
@@ -12,7 +12,7 @@ What a nice template\footnote{I did it myself!} for \citep{Rougier:2017}.\\
      \node[draw, fill=black!5, dashed, thick,
        text width=.98\textwidth, minimum height=3cm] at (0,0) {~~\sf Figure 1};
    \end{tikzpicture}
-    \captionof{figure}{Figure caption}
+    \captionof{figure}{Figure caption.}
     \label{fig:1}
 \end{figure}
 
@@ -28,7 +28,7 @@ What a nice template\footnote{I did it myself!} for \citep{Rougier:2017}.\\
       Item 1 & Item 2\\
       \hline
     \end{tabularx}
-    \captionof{table}{Table caption}
+    \captionof{table}{Table caption.}
     \label{tab:1}
 \end{minipage}
 \hfill
@@ -42,7 +42,7 @@ What a nice template\footnote{I did it myself!} for \citep{Rougier:2017}.\\
       Item 1 & Item 2\\
       \hline
     \end{tabularx}
-    \captionof{table}{Table caption}
+    \captionof{table}{Table caption.}
     \label{tab:2}
 \end{minipage}
 \end{table}
@@ -55,9 +55,14 @@ for other exponents.  Meaning equation \eqref{eq:1} has no integer solutions:
   \label{eq:1}
   x^n + y^n = z^n
 \end{equation}
+\marginpar{\sf \footnotesize
+           \vspace{-4em} I have a proof but it doesn't fit in the margin...}
+
 
 \subsection*{Listings}
-\begin{lstlisting}[language=python, caption={Listing caption}, label={lst:1}]
+\begin{lstlisting}[language=python,
+                   caption={Listing caption.},
+                   label={lst:1}]
 # Standard import
 import this
 

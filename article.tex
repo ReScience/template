@@ -1,4 +1,4 @@
-\documentclass[a4paper,11pt]{article}
+\documentclass[a4paper,10pt]{article}
 
 % ---- Encoding ---------------------------------------------------------------
 \usepackage[utf8]{inputenc}
@@ -22,7 +22,7 @@
 \usepackage[a4paper]{geometry}
 \geometry{left=1.5cm, right=1.5cm, height=28cm}
 \geometry{footskip=1.25cm, headheight=1cm, headsep=1.25cm}
-\geometry{marginparsep=0.5cm, marginpar=2.0cm}
+\geometry{marginparsep=0.5cm, marginpar=5.0cm}
 \geometry{includehead, includefoot, includemp}
 
 
@@ -88,6 +88,7 @@
 \renewcommand{\captionlabelfont}{\small\sffamily\bfseries}
 % \captionsetup[figure]{justification=justified, singlelinecheck=false}
 % \captionsetup[table]{justification=justified, singlelinecheck=false}
+\captionsetup[listing]{justification=justified, singlelinecheck=false}
 
 
 % --- Hyperref & colors -------------------------------------------------------
@@ -135,6 +136,12 @@
   aboveskip=0.5em,
   belowskip=0.5em,
 }
+%% \makeatletter
+%% \long\def\@makecaption#1#2{%
+%%   \vskip\abovecaptionskip
+%%     \small \sf \bfseries #1. \normalfont \small #2\par
+%%   \vskip\belowcaptionskip}%
+%% \makeatother
 
 % --- Bibliography ------------------------------------------------------------
 \usepackage[
@@ -269,6 +276,7 @@
 }
 
 
+% --- PDF Information ---------------------------------------------------------
 \hypersetup{
   pdfauthor={\authorsFULL},
   pdftitle={\articleTITLE},
@@ -278,14 +286,16 @@
   pdfproducer={ReScience (rescience.github.io)}
 }
 
+
 % =============================================================================
 \bibliography{article.bib}
 
 \begin{document}
 \input{article-cover.tex}
 \input{article-content.tex}
+
 \addcontentsline{toc}{section}{References}
-\renewcommand*{\bibfont}{\footnotesize \sffamily}
+\renewcommand*{\bibfont}{\small \sffamily}
 \printbibliography
 \end{document}
 % =============================================================================

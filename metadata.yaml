@@ -12,9 +12,9 @@ authors:
     email: Nicolas.Rougier@inria.fr
     affiliations: 1,2,3,*      # * is for contact author
 
-# List of affiliations with code (corresponding to author affiliations), name and address
-# You can also use these affiliations to add text such as "Equal contribution"
-# as name (and no address).
+# List of affiliations with code (corresponding to author affiliations), name
+# and address. You can also use these affiliations to add text such as "Equal
+# contributions" as name (with no address).
 affiliations:
   - code:    1
     name:    INRIA Bordeaux Sud-Ouest
