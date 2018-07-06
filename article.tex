@@ -22,7 +22,7 @@
 \usepackage[a4paper]{geometry}
 \geometry{left=1.5cm, right=1.5cm, height=28cm}
 \geometry{footskip=1.25cm, headheight=1cm, headsep=1.25cm}
-\geometry{marginparsep=0.5cm, marginpar=5.0cm}
+\geometry{marginparsep=0.5cm, marginpar=4.0cm}
 \geometry{includehead, includefoot, includemp}
 
 
@@ -251,7 +251,7 @@
 \chead{\sf }
 \rhead{\ifthenelse{\value{page}=1}{%
 \begin{tikzpicture}[remember picture, overlay]
-  \node [shift={(-3.5cm,-4cm)}] at (current page.north east) {
+  \node [shift={(-3.5cm,-3.5cm)}] at (current page.north east) {
      \begin{tikzpicture}[remember picture, overlay]
        \fill [fill=darkred, opacity=1.0] (0,0) rectangle (2.cm,4cm);
        \node [shift={(1cm,1cm)}, opacity=1.0]
