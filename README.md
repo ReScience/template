@@ -7,6 +7,7 @@ PDF style. A tool is available for the latex template that produces latex
 definitions from the metadata file. If you use another software, make sure that
 metadata and PDF are always synced.
 
+You can also use overleaf with the [provided template](https://www.overleaf.com/read/kfrwdmygjyqw) but in this case, you'll have to enter `metadata.tex` manually.
 
 #### Usage
 
@@ -18,7 +19,10 @@ and type:
 $ make 
 ```
 
-After acceptance, fill in [metadata.yaml](./metadata.yaml) with information provided by the editor and type:
+This will produce an `article.pdf` using xelatex and provided font.
+
+
+After acceptance, you'll need to complete [metadata.yaml](./metadata.yaml) with information provided by the editor and type again:
 
 ```bash
 $ make
