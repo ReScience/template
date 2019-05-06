@@ -63,7 +63,7 @@
 
       \ifdefempty{\codeURL}{}
       {Code is available at
-      \href{\codeURL}{\codeURL}\ifdefempty{\codeDOI}{.}{ -- DOI \doi{\codeDOI}.}}
+      \href{\codeURL}{\detokenize\expandafter{\codeURL}}\ifdefempty{\codeDOI}{.}{ -- DOI \doi{\codeDOI}.}}
 
       \ifdefempty{\dataURL}{}
       {Data is available at
