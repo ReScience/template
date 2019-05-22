@@ -15,7 +15,7 @@
 \LoadClass[a4paper, oneside, 10pt]{article}
 
 % ---- Encoding ---------------------------------------------------------------
-\RequirePackage[utf8]{inputenc}
+% \RequirePackage[utf8]{inputenc}
 
 
 % --- Langage -----------------------------------------------------------------
@@ -221,7 +221,7 @@
 \setlength{\affilsep}{0.25em}
 \renewcommand\Affilfont{\normalfont\sffamily\footnotesize}
 \renewcommand\Authfont{\sffamily\bfseries\small}
-\renewcommand\Authands{\normalfont\sffamily\small}
+% \renewcommand\Authands{\normalfont\sffamily\small}
 \makeatletter
 \renewcommand\AB@affilsepx{ -- \protect\Affilfont}
 \makeatother
@@ -284,7 +284,7 @@
 \renewcommand{\footrulewidth}{0.0pt}
 \lfoot{\scriptsize \sffamily
   \href{https://rescience.github.io/}{\bfseries \textcolor{black}{\journalNAME}}
-    \ifdefempty{\journalVOLUME}{}{\journalVOLUME.\journalISSUE}
+    \ifdefempty{\journalVOLUME}{}{\journalVOLUME.\journalISSUE~(\#\articleNUMBER)}
      -- \authorsSHORT~\articleYEAR}
 \cfoot{}
 \rfoot{\scriptsize \sffamily \thepage}
@@ -309,6 +309,7 @@
 \DeclareFieldFormat{labelnumberwidth}{#1\adddot}
 \renewcommand*{\bibfont}{\small \sffamily}
 \addbibresource{\articleBIBLIOGRAPHY}
+\renewcommand{\citet}[1]{\citeauthor{#1}\supercite{#1}}
 
 
 % --- Copyright statement -----------------------------------------------------
