@@ -19,7 +19,7 @@ and type:
 $ make 
 ```
 
-This will produce an `article.pdf` using xelatex and provided font.
+This will produce an `article.pdf` using xelatex and provided font. Note that you must have Python 3 and [PyYAML](https://pyyaml.org/) installed on your computer, in addition to `make`.
 
 
 After acceptance, you'll need to complete [metadata.yaml](./metadata.yaml) with information provided by the editor and type again:
