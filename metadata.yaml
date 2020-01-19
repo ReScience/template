@@ -57,7 +57,7 @@ code:
   - url: https://github.com/rescience-c/template
   - doi: 
 
-# Date URL and DOI (optional if no data)
+# Data URL and DOI (optional if no data)
 data:
   - url:
   - doi:
