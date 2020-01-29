@@ -10,6 +10,7 @@ def generate_latex_metadata(filename, article):
         "% DO NOT EDIT - automatically generated from {filename}\n\n"
         "\\def \\codeURL{{{_.code.url}}}\n"
         "\\def \\codeDOI{{{_.code.doi}}}\n"
+        "\\def \\codeSWH{{{_.code.swh}}}\n"
         "\\def \\dataURL{{{_.data.url}}}\n"
         "\\def \\dataDOI{{{_.data.doi}}}\n"
         "\\def \\editorNAME{{{_.editors[0].name}}}\n"
