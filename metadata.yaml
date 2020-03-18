@@ -8,7 +8,7 @@
 title: "ReScience (R)evolution"
 
 # List of authors with name, orcid number, email and affiliation
-# Affiliation "*" means contact author
+# Affiliation "*" means contact author (required even for single-authored papers)
 authors:
   - name: Konrad Hinsen
     orcid: 0000-0003-0330-9428
