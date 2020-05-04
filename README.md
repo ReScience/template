@@ -28,3 +28,12 @@ After acceptance, you'll need to complete [metadata.yaml](./metadata.yaml) with 
 $ make
 ```
 
+(C) 2015-2020, Nicolas Rougier + co-authors GPL-3+, Apache v2+, SIL Open Font License
+
+This set of template files is free-licensed. The files contained in
+the sub-directories roboto/; source-code-pro/; source-sans-pro/;
+source-serif-pro/; have their free licences indicated with a
+"*License.txt" file. All other files, including this one, are licensed
+under the GPL version 3 or later, at your choosing, by Nicolas Rougier
+and co-authors, 2015-2020. See the file COPYING for details of the
+GPL-3 licence.
