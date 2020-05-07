@@ -168,7 +168,7 @@ class Article:
             
         
     def parse(self, data):
-        document = yaml.load(data)
+        document = yaml.load(data, Loader=yaml.SafeLoader)
 
         self.title = document.get("title", "")
         self.abstract = document.get("abstract","") or ""
