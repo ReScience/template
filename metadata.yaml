@@ -2,7 +2,7 @@
 # -------------------------------------------------------
 
 # Title of the article:
-#  - For a successful replication, it shoudl be prefixed with "[Re]"
+#  - For a successful replication, it should be prefixed with "[Re]"
 #  - For a failed replication, it should be prefixed with "[¬Re]"
 #  - For other article types, no instruction (but please, not too long)
 title: "ReScience (R)evolution"
