@@ -4,9 +4,14 @@
 %% Released under a Creative Commons Attribution 4.0 International license.
 %% ----------------------------------------------------------------------------
 %% Dependencies:
-%%  * metadata.tex 
+%%  * metadata.tex
 %%  * header.tex
 %%  * content.tex
+%% ----------------------------------------------------------------------------
+%% 2020-07-18 B. Roukema - Change DOI links in references to open access DOI oadoi.org;
+%%                       - Insert \sloppy option for references;
+%%                       - Make URL texts copy/pastable by redefining \nolinkurl;
+%%                       - Remove space from eprint identifers.
 %% ----------------------------------------------------------------------------
 
 \NeedsTeXFormat{LaTeX2e}
@@ -78,13 +83,13 @@
   Path = ./roboto/RobotoCondensed-, Extension = .ttf,
   UprightFont = Regular,
   BoldFont = Bold
-]  
+]
 
 \newfontfamily\Roboto{Roboto}[
   Path = ./roboto/Roboto-, Extension = .ttf,
   UprightFont = Regular,
   BoldFont = Black
-]  
+]
 
 \newfontfamily\SpaceRoboto{Roboto}[
   Path = ./roboto/Roboto-, Extension = .ttf,
@@ -92,7 +97,7 @@
   BoldFont = Medium,
   UprightFeatures={LetterSpace=35},
   BoldFeatures={LetterSpace=35}
-]  
+]
 
 
 \RequirePackage{microtype}
@@ -115,12 +120,12 @@
 %%             {\Large\sffamily\bfseries}{\thesection}{0.25em}{}
 %% \titleformat{\subsection}
 %%             {\large\sffamily\bfseries}{\thesection}{0.25em}{}
-            
+
 \titleformat{\section}{\Large\sffamily\bfseries}
             {\llap{{\textcolor{lightgray}{\normalfont\sffamily\thesection}}\hskip 0.5em}}{0em}{}
 \titleformat{\subsection}{\large\sffamily\bfseries}
      {\llap{{\textcolor{lightgray}{\normalfont\sffamily\thesubsection}}\hskip 0.5em}}{0em}{}
-     
+
 \titleformat{\subsubsection}[runin]
             {\normalfont\sffamily\bfseries}{}{0em}{}[\mbox{ --- }]
 \titlespacing{\subsubsection}
@@ -230,33 +235,33 @@
 % --- Various convenient macros -----------------------------------------------
 \RequirePackage[many]{tcolorbox}
 \newtcbox{\iconbox}[1][]{%
-  enhanced,nobeforeafter,tcbox raise base, 
+  enhanced,nobeforeafter,tcbox raise base,
   boxrule=0.4pt, top=0pt, bottom=-1pt,
   right=.1pt, left=.1pt, arc=1pt, boxsep=1pt,
   fontupper={\tiny \sffamily}, before upper={\vphantom{dlg}},
   colframe=white, colback=black!10!white, coltext=black}
 \newcommand{\orcid}[1]{\href{https://orcid.org/#1}{\iconbox{ID}}}
-\newcommand{\doi}[1]{\href{http://doi.org/#1}{#1}}
+\newcommand{\doi}[1]{\href{http://oadoi.org/#1}{#1}}
 \newcommand{\github}[1]{\href{https://github.com/#1}{github.com/#1}}
 
 % See https://tex.stackexchange.com/questions/99316/symbol-for-external-links
 \newcommand{\ExternalLink}{%
-    \tikz[x=1.2ex, y=1.2ex, baseline=-0.05ex]{% 
+    \tikz[x=1.2ex, y=1.2ex, baseline=-0.05ex]{%
         \begin{scope}[x=1ex, y=1ex]
-            \clip (-0.1,-0.1) 
-                --++ (-0, 1.2) 
-                --++ (0.6, 0) 
-                --++ (0, -0.6) 
-                --++ (0.6, 0) 
+            \clip (-0.1,-0.1)
+                --++ (-0, 1.2)
+                --++ (0.6, 0)
+                --++ (0, -0.6)
+                --++ (0.6, 0)
                 --++ (0, -1);
-            \path[draw, 
-                line width = 0.5, 
-                rounded corners=0.5] 
+            \path[draw,
+                line width = 0.5,
+                rounded corners=0.5]
                 (0,0) rectangle (1,1);
         \end{scope}
-        \path[draw, line width = 0.5] (0.5, 0.5) 
+        \path[draw, line width = 0.5] (0.5, 0.5)
             -- (1, 1);
-        \path[draw, line width = 0.5] (0.6, 1) 
+        \path[draw, line width = 0.5] (0.6, 1)
             -- (1, 1) -- (1, 0.6);
         }
     }
@@ -301,8 +306,8 @@
   mincitenames=1,
   maxbibnames=10,
   isbn = false,
-  url = false,
-  doi = false,
+  url = true,
+  doi = true,
   autocite = superscript,
   natbib = true]{biblatex}
 \RequirePackage{bibentry}
@@ -310,6 +315,54 @@
 \renewcommand*{\bibfont}{\small \sffamily}
 \addbibresource{\articleBIBLIOGRAPHY}
 \renewcommand{\citet}[1]{\citeauthor{#1}\supercite{#1}}
+
+%Example for clickable title:
+%\newbibmacro{string+doi}[1]{%
+%  \iffieldundef{doi}{#1}{\href{https://oadoi.org/\thefield{doi}}{#1}}}
+%\DeclareFieldFormat{title}{\usebibmacro{string+doi}{\mkbibemph{#1}}}
+%\DeclareFieldFormat[article]{title}{\usebibmacro{string+doi}{\mkbibquote{#1}}}
+
+%% The https://oadoi.org domain chooses open-access versions of an
+%% article, preferring publisher versions (gold open access) if
+%% possible, otherwise preprints (green open access), and only falls
+%% back to the paywalled version if nothing open-access (gold or
+%% green) is available. We print the DOI as text to make sure that
+%% it's accessible in printed version and to robots that only analyse
+%% the printed text.
+\DeclareFieldFormat{doi}{%
+  \mkbibacro{DOI}\addcolon\space
+  \ifhyperref
+    {\href{https://oadoi.org/#1}{\nolinkurl{#1}}}
+    {\nolinkurl{#1}}}
+
+%% Add \sloppy because DOIs are quite often long.
+\appto{\bibsetup}{\sloppy}
+
+%% We want URLs to be copy/pastable; the default version of \nolinkurl
+%% seems to not just make the URLs unlinked, but also inserts spaces
+%% inside the URL, making any copy/pasted version unusable without
+%% human intervention.
+\renewcommand\nolinkurl[1]{#1}
+
+
+%% Redefine ArXiv eprint format without a space. This is required
+%% for ArXiv identifiers so that robots analysing the rendered pdf
+%% text will correctly link to the identifiers. See
+%% https://arxiv.org/help/arxiv_identifier . This is from biblatex.def,
+%% but with \space removed.
+\DeclareFieldFormat{eprint:arxiv}{%
+  arXiv\addcolon
+  \ifhyperref
+    {\href{http://arxiv.org/abs/#1}{%
+       \nolinkurl{#1}%
+       \iffieldundef{eprintclass}
+         {}
+         {\addspace\texttt{\mkbibbrackets{\thefield{eprintclass}}}}}}
+    {\nolinkurl{#1}
+     \iffieldundef{eprintclass}
+       {}
+       {\addspace\texttt{\mkbibbrackets{\thefield{eprintclass}}}}}}
+\DeclareFieldAlias{eprint:arXiv}{eprint:arxiv}
 
 
 % --- Copyright statement -----------------------------------------------------
