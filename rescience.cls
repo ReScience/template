@@ -70,7 +70,8 @@
 \setsansfont{Roboto Condensed}[
   Path = ./roboto/RobotoCondensed-, Extension = .ttf,
   UprightFont = Light,
-  BoldFont = Regular
+  BoldFont = Regular,
+  ItalicFont = LightItalic
 ]
 
 \setmonofont{Source Code Pro}[
