@@ -317,6 +317,23 @@
 \addbibresource{\articleBIBLIOGRAPHY}
 \renewcommand{\citet}[1]{\citeauthor{#1}\supercite{#1}}
 
+%% Add [] around citation superscripts to distinguish from footnotes
+
+\usepackage{biblatex}
+
+\DeclareCiteCommand{\supercite}[\mkbibsuperscript]
+  {\iffieldundef{prenote}
+     {}
+     {\BibliographyWarning{Ignoring prenote argument}}%
+   \iffieldundef{postnote}
+     {}
+     {\BibliographyWarning{Ignoring postnote argument}}%
+   \bibopenbracket}%
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite}}
+  {\supercitedelim}
+  {\bibclosebracket}
+
 %Example for clickable title:
 %\newbibmacro{string+doi}[1]{%
 %  \iffieldundef{doi}{#1}{\href{https://oadoi.org/\thefield{doi}}{#1}}}
