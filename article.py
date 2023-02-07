@@ -3,6 +3,8 @@
 
 import yaml
 
+SUFFIXES = ["II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"]
+
 class Contributor:
     def __init__(self, role, name, orcid="", email="", affiliations=[]):
         self.role = role
@@ -23,6 +25,9 @@ class Contributor:
         else:
             lastname = name.split(" ")[-1]
             firstnames = name.split(" ")[:-1]
+            if lastname in SUFFIXES:
+                lastname = " ".join(name.split(" ")[-2:])
+                firstnames = name.split(" ")[:-2]
         abbrvname = ""
         for firstname in firstnames:
             if "-" in firstname:
@@ -43,6 +48,8 @@ class Contributor:
         # Nicolas P. Rougier
         else:
             lastname = name.split(" ")[-1]
+            if lastname in SUFFIXES:
+                lastname = " ".join(name.split(" ")[-2:])
             firstname = name.split(" ")[:-1]
         return lastname
     
