@@ -4,12 +4,15 @@
 import yaml
 
 class Contributor:
-    def __init__(self, role, name, orcid="", email="", affiliations=[]):
+    def __init__(self, role, name, suffix="", orcid="", email="", affiliations=[]):
         self.role = role
-        self.name = name
-        self.fullname = name
+        self.name = " ".join([name, suffix]) if suffix else name
+        self.fullname = " ".join([name, suffix]) if suffix else name
+        # lastname = self.get_lastname(name)
+        # self.lastname = " ".join([lastname, suffix]) if suffix else lastname
         self.lastname = self.get_lastname(name)
-        self.abbrvname = self.get_abbrvname(name)
+        abbrvname = self.get_abbrvname(name)
+        self.abbrvname = " ".join([abbrvname, suffix]) if suffix else abbrvname
         self.orcid = orcid
         self.email = email
         self.affiliations = affiliations
@@ -189,6 +192,7 @@ class Article:
         for item in document["authors"]:
             role = "author"
             name = item["name"] or ""
+            suffix = item.get("suffix", "") or ""
             orcid = item.get("orcid","") or ""
             email = item.get("email","") or ""
             if item["affiliations"] is not None:
@@ -196,15 +200,15 @@ class Article:
                     affiliations = item["affiliations"].split(",")
                     if "*" in affiliations:
                         affiliations.remove("*")
-                        author = Contributor(role, name, orcid, email, affiliations)
+                        author = Contributor(role, name, suffix, orcid, email, affiliations)
                         self.add_contributor(author)
                         self.contact = author
                     else:
-                        author = Contributor(role, name, orcid, email, affiliations)
+                        author = Contributor(role, name, suffix, orcid, email, affiliations)
                         self.add_contributor(author)
                 else:
                     affiliations = list(str(item["affiliations"]))
-                    author = Contributor(role, name, orcid, email, affiliations)
+                    author = Contributor(role, name, suffix, orcid, email, affiliations)
                     self.add_contributor(author)
                 
 

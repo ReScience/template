@@ -11,11 +11,13 @@ title: "ReScience (R)evolution"
 # Affiliation "*" means contact author (required even for single-authored papers)
 authors:
   - name: Konrad Hinsen
+    suffix: # Optional author name suffix
     orcid: 0000-0003-0330-9428
     email: konrad.hinsen@cnrs.fr
     affiliations: 1,2
     
   - name: Nicolas P. Rougier
+    suffix:
     orcid: 0000-0002-6972-589X
     email: Nicolas.Rougier@inria.fr
     affiliations: 3,4,5,*      # * is for contact author
